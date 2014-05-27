@@ -1,0 +1,60 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: package pywip.tools</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="pywip.html"><font color="#ffffff">pywip</font></a>.tools</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/chapman/data1/Applications/nlcpython/pywip/tools/__init__.py">/Users/chapman/data1/Applications/nlcpython/pywip/tools/__init__.py</a></font></td></tr></table>
+    <p><tt>The&nbsp;tools&nbsp;module&nbsp;implements&nbsp;helper&nbsp;functions&nbsp;for&nbsp;use&nbsp;with&nbsp;pywip.&nbsp;&nbsp;Unlike<br>
+the&nbsp;rest&nbsp;of&nbsp;pywip,&nbsp;they&nbsp;often&nbsp;require&nbsp;numpy&nbsp;and&nbsp;pyfits&nbsp;to&nbsp;run.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pywip.tools.imextract.html">imextract</a><br>
+</td><td width="25%" valign=top><a href="pywip.tools.levelgen.html">levelgen</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-imextract"><strong>imextract</strong></a>(image, ext<font color="#909090">=1</font>, headerext<font color="#909090">=None</font>)</dt><dd><tt>Extract&nbsp;the&nbsp;given&nbsp;extension/plane&nbsp;and&nbsp;save&nbsp;to&nbsp;a&nbsp;new&nbsp;file.<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;string&nbsp;with&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;temporary&nbsp;file.&nbsp;&nbsp;This&nbsp;filename<br>
+is&nbsp;also&nbsp;added&nbsp;to&nbsp;pywip's&nbsp;internal&nbsp;list&nbsp;of&nbsp;temporary&nbsp;files,&nbsp;meaning&nbsp;it<br>
+will&nbsp;automatically&nbsp;be&nbsp;deleted&nbsp;after&nbsp;savefig()&nbsp;is&nbsp;called.<br>
+&nbsp;<br>
+<a href="#-imextract">imextract</a>()&nbsp;is&nbsp;often&nbsp;needed&nbsp;because&nbsp;WIP&nbsp;doesn't&nbsp;know&nbsp;what&nbsp;to&nbsp;do&nbsp;with<br>
+multi-extension&nbsp;FITS&nbsp;images.<br>
+&nbsp;<br>
+image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;image&nbsp;name<br>
+ext&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;extension&nbsp;number,&nbsp;defaults&nbsp;to&nbsp;1<br>
+headerext&nbsp;-&nbsp;Extension&nbsp;number&nbsp;to&nbsp;use&nbsp;for&nbsp;header.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;same&nbsp;value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as&nbsp;ext</tt></dd></dl>
+ <dl><dt><a name="-levelgen"><strong>levelgen</strong></a>(start, stop, step<font color="#909090">=1</font>, unit<font color="#909090">='step'</font>, fac<font color="#909090">=1</font>)</dt><dd><tt>Generate&nbsp;levels&nbsp;for&nbsp;contour()&nbsp;command.<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;specified&nbsp;levels.<br>
+&nbsp;<br>
+start&nbsp;-&nbsp;start&nbsp;value<br>
+stop&nbsp;&nbsp;-&nbsp;stop&nbsp;value&nbsp;(included,&nbsp;unlike&nbsp;normal&nbsp;python&nbsp;convention)<br>
+step&nbsp;&nbsp;-&nbsp;step&nbsp;size&nbsp;or&nbsp;number&nbsp;of&nbsp;output&nbsp;levels&nbsp;(depending&nbsp;on&nbsp;unit)<br>
+unit&nbsp;&nbsp;-&nbsp;controls&nbsp;how&nbsp;step&nbsp;keyword&nbsp;is&nbsp;handled.&nbsp;&nbsp;Can&nbsp;be&nbsp;step&nbsp;or&nbsp;num<br>
+fac&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;factor&nbsp;to&nbsp;multiply&nbsp;each&nbsp;output&nbsp;unit&nbsp;by.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['imextract', 'levelgen']</td></tr></table>
+</body></html>

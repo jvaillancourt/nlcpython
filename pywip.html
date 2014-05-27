@@ -1,0 +1,665 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: package pywip</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pywip</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/chapman/data1/Applications/nlcpython/pywip/__init__.py">/Users/chapman/data1/Applications/nlcpython/pywip/__init__.py</a></font></td></tr></table>
+    <p><tt>Library&nbsp;functions&nbsp;for&nbsp;running&nbsp;WIP&nbsp;within&nbsp;python<br>
+Started&nbsp;12&nbsp;April&nbsp;2007&nbsp;-&nbsp;NLC<br>
+First&nbsp;used&nbsp;for&nbsp;a&nbsp;real&nbsp;plot&nbsp;on&nbsp;19&nbsp;April&nbsp;2007<br>
+version&nbsp;2.0&nbsp;-&nbsp;21&nbsp;April&nbsp;2009&nbsp;-&nbsp;Lots&nbsp;of&nbsp;backend&nbsp;changes,&nbsp;switched&nbsp;to&nbsp;variable<br>
+&nbsp;&nbsp;&nbsp;arguments&nbsp;in&nbsp;all&nbsp;function&nbsp;calls,&nbsp;made&nbsp;the&nbsp;uber-awesome&nbsp;legend&nbsp;command,<br>
+&nbsp;&nbsp;&nbsp;and&nbsp;made&nbsp;the&nbsp;axis&nbsp;command&nbsp;user-friendly.&nbsp;&nbsp;It&nbsp;is&nbsp;NOT&nbsp;backwards-compatible<br>
+&nbsp;&nbsp;&nbsp;with&nbsp;the&nbsp;older&nbsp;version1,&nbsp;but&nbsp;it&nbsp;is&nbsp;easy&nbsp;to&nbsp;update&nbsp;your&nbsp;scripts.&nbsp;&nbsp;Only&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;few&nbsp;of&nbsp;the&nbsp;commands&nbsp;have&nbsp;changed&nbsp;argument&nbsp;calls:&nbsp;axis,&nbsp;curve,&nbsp;legend,&nbsp;panel,<br>
+&nbsp;&nbsp;&nbsp;wedge,&nbsp;and&nbsp;winadj.<br>
+version&nbsp;3.0&nbsp;<br>
+&nbsp;&nbsp;&nbsp;split&nbsp;functions&nbsp;into&nbsp;separate&nbsp;files&nbsp;and&nbsp;made&nbsp;a&nbsp;pywip&nbsp;a&nbsp;proper&nbsp;package<br>
+&nbsp;&nbsp;&nbsp;<a href="#-arc">arc</a>()&nbsp;can&nbsp;now&nbsp;specify&nbsp;fill&nbsp;color<br>
+&nbsp;&nbsp;&nbsp;rudimentary&nbsp;<a href="#-compass">compass</a>()&nbsp;command<br>
+&nbsp;&nbsp;&nbsp;stick()&nbsp;command&nbsp;has&nbsp;been&nbsp;subsumed&nbsp;into&nbsp;<a href="#-vector">vector</a>()<br>
+&nbsp;&nbsp;&nbsp;officially&nbsp;added&nbsp;some&nbsp;random&nbsp;tools&nbsp;to&nbsp;the&nbsp;bin&nbsp;directory.<br>
+&nbsp;<br>
+last&nbsp;updated:&nbsp;9&nbsp;July&nbsp;2013&nbsp;-&nbsp;NLC<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Colors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Palettes<br>
+===============================&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;===================================<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;key&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;key&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+-------------------------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-----------------------------------<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;white&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;gray&nbsp;&nbsp;&nbsp;|&nbsp;grayscale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;k&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;black&nbsp;(default)&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;rainbow&nbsp;|&nbsp;Rainbow&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;red&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;heat&nbsp;&nbsp;&nbsp;|&nbsp;Heat&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;iraf&nbsp;&nbsp;&nbsp;|&nbsp;IRAF&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;blue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;aips&nbsp;&nbsp;&nbsp;|&nbsp;AIPS&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;cyan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;pgplot&nbsp;&nbsp;|&nbsp;PGPLOT&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;magenta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;SAOimage&nbsp;A&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;yellow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;bb&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;SAOimage&nbsp;BB&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;orange&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;he&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;SAOimage&nbsp;HE&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;gy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;green-yellow&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;i8&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;SAOimage&nbsp;I8&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;gc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;green-cyan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;ds&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;DS&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;bc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;blue-cyan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;cyclic&nbsp;&nbsp;|&nbsp;Cyclic&nbsp;scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;bm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;blue-magenta&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;filename|&nbsp;rgb&nbsp;lookup&nbsp;from&nbsp;a&nbsp;file|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(i.e.&nbsp;purple)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-----------------------------------<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;rm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;red-magenta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;can&nbsp;prepend&nbsp;palette&nbsp;keywords&nbsp;with<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;dg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;dark&nbsp;gray&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;minus&nbsp;sign&nbsp;to&nbsp;reverse&nbsp;the&nbsp;scale<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;lg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;light&nbsp;gray&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+|&nbsp;gray1-100&nbsp;|&nbsp;shades&nbsp;of&nbsp;gray&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;r,g,b&nbsp;&nbsp;&nbsp;|&nbsp;rgb&nbsp;color&nbsp;as&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;fractions&nbsp;from&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;0-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+-------------------------------<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Fill&nbsp;Styles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fonts<br>
+=======================&nbsp;&nbsp;&nbsp;=========================<br>
+|&nbsp;key&nbsp;|&nbsp;&nbsp;Description&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;key&nbsp;|&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;|<br>
+-----------------------&nbsp;&nbsp;&nbsp;-------------------------<br>
+|&nbsp;&nbsp;s&nbsp;&nbsp;|&nbsp;solid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;sf&nbsp;|&nbsp;sans-serif&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;h&nbsp;&nbsp;|&nbsp;hollow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;rm&nbsp;|&nbsp;roman&nbsp;(default)&nbsp;|<br>
+|&nbsp;&nbsp;/&nbsp;&nbsp;|&nbsp;hatched&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;it&nbsp;|&nbsp;italics&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;#&nbsp;&nbsp;|&nbsp;cross-hatched&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;cu&nbsp;|&nbsp;cursive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+-----------------------&nbsp;&nbsp;&nbsp;-------------------------<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Symbols&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Line&nbsp;Styles<br>
+=================================&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;===========================<br>
+|&nbsp;&nbsp;key&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;key&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;|<br>
+---------------------------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---------------------------<br>
+|&nbsp;&nbsp;&nbsp;s&nbsp;&nbsp;&nbsp;|&nbsp;square&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;|&nbsp;solid&nbsp;(default)&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;|&nbsp;dot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;--&nbsp;&nbsp;|&nbsp;dashed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;|&nbsp;plus&nbsp;sign&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;.-&nbsp;&nbsp;|&nbsp;dot-dashed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;|&nbsp;asterisks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;|&nbsp;dotted&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;o&nbsp;&nbsp;&nbsp;|&nbsp;circle&nbsp;(default)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;-...&nbsp;|&nbsp;dash-dot-dot-dot&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;|&nbsp;an&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---------------------------<br>
+|&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;|&nbsp;triangle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;oplus&nbsp;|&nbsp;circle&nbsp;with&nbsp;plus&nbsp;sign&nbsp;|<br>
+|&nbsp;odot&nbsp;&nbsp;|&nbsp;circle&nbsp;with&nbsp;a&nbsp;dot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;ps&nbsp;&nbsp;&nbsp;|&nbsp;pointed&nbsp;square&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;&nbsp;d&nbsp;&nbsp;&nbsp;|&nbsp;diamond&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;st&nbsp;&nbsp;&nbsp;|&nbsp;five-point&nbsp;star&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;&nbsp;o+&nbsp;&nbsp;&nbsp;|&nbsp;open&nbsp;plus&nbsp;symbol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;david&nbsp;|&nbsp;star&nbsp;of&nbsp;david&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+|&nbsp;arrow&nbsp;|&nbsp;an&nbsp;arrow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+---------------------------------<br>
+*&nbsp;Only&nbsp;the&nbsp;square,&nbsp;circle,&nbsp;triangle,&nbsp;and&nbsp;five-point&nbsp;star&nbsp;can&nbsp;be&nbsp;filled.<br>
+&nbsp;<br>
+LaTeX&nbsp;is&nbsp;supported&nbsp;in&nbsp;text&nbsp;strings&nbsp;by&nbsp;default.&nbsp;&nbsp;Note&nbsp;that&nbsp;unlike&nbsp;math&nbsp;mode&nbsp;in<br>
+LaTeX,&nbsp;the&nbsp;text&nbsp;is&nbsp;NOT&nbsp;italicized&nbsp;by&nbsp;&nbsp;default.&nbsp;&nbsp;LaTeX&nbsp;symbols&nbsp;supported:&nbsp;all<br>
+greek&nbsp;symbols,&nbsp;\times,&nbsp;\AA&nbsp;(for&nbsp;angstroms),&nbsp;\odot&nbsp;(for&nbsp;sun&nbsp;symbol),<br>
+\oplus&nbsp;(for&nbsp;earth&nbsp;symbol),&nbsp;\pm&nbsp;(for&nbsp;proper&nbsp;+-),&nbsp;\geq&nbsp;(for&nbsp;greater&nbsp;than&nbsp;or<br>
+equal&nbsp;to),&nbsp;\leq&nbsp;(for&nbsp;less&nbsp;than&nbsp;or&nbsp;equal&nbsp;to),&nbsp;\propto&nbsp;(for&nbsp;proportionality),&nbsp;<br>
+^{}&nbsp;(for&nbsp;superscripts),&nbsp;\circ&nbsp;(for&nbsp;degrees&nbsp;symbol),&nbsp;_{}&nbsp;(for&nbsp;subscripts),&nbsp;<br>
+\sf{}&nbsp;(for&nbsp;sans-serif&nbsp;font),&nbsp;\rm{}&nbsp;(for&nbsp;roman&nbsp;font),&nbsp;\it{}&nbsp;(for&nbsp;italics),&nbsp;<br>
+\cu{}&nbsp;(for&nbsp;cursive)</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pywip.arc.html">arc</a><br>
+<a href="pywip.arrow.html">arrow</a><br>
+<a href="pywip.axis.html">axis</a><br>
+<a href="pywip.bar.html">bar</a><br>
+<a href="pywip.beam.html">beam</a><br>
+<a href="pywip.bin.html">bin</a><br>
+<a href="pywip.blowup.html">blowup</a><br>
+<a href="pywip.compass.html">compass</a><br>
+</td><td width="25%" valign=top><a href="pywip.connect.html">connect</a><br>
+<a href="pywip.contour.html">contour</a><br>
+<a href="pywip.curve.html">curve</a><br>
+<a href="pywip.default.html">default</a><br>
+<a href="pywip.errorbar.html">errorbar</a><br>
+<a href="pywip.halftone.html">halftone</a><br>
+<a href="pywip.header.html">header</a><br>
+<a href="pywip.inputwip.html">inputwip</a><br>
+</td><td width="25%" valign=top><a href="pywip.legend.html">legend</a><br>
+<a href="pywip.panel.html">panel</a><br>
+<a href="pywip.plot.html">plot</a><br>
+<a href="pywip.poly.html">poly</a><br>
+<a href="pywip.rect.html">rect</a><br>
+<a href="pywip.savefig.html">savefig</a><br>
+<a href="pywip.stick.html">stick</a><br>
+<a href="pywip.text.html">text</a><br>
+</td><td width="25%" valign=top><a href="pywip.title.html">title</a><br>
+<a href="pywip.tools.html"><strong>tools</strong>&nbsp;(package)</a><br>
+<a href="pywip.vector.html">vector</a><br>
+<a href="pywip.viewport.html">viewport</a><br>
+<a href="pywip.wedge.html">wedge</a><br>
+<a href="pywip.winadj.html">winadj</a><br>
+<a href="pywip.xlabel.html">xlabel</a><br>
+<a href="pywip.ylabel.html">ylabel</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-arc"><strong>arc</strong></a>(x, y, majorx, majory, deg<font color="#909090">=360</font>, start<font color="#909090">=0</font>, angle<font color="#909090">=0</font>, fill<font color="#909090">='s'</font>, **args)</dt><dd><tt>Draw&nbsp;a&nbsp;curved&nbsp;line&nbsp;to&nbsp;make&nbsp;circles,&nbsp;ellipses,&nbsp;arcs,&nbsp;etc.<br>
+&nbsp;<br>
+x,y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;central&nbsp;coordinates&nbsp;for&nbsp;arc.&nbsp;&nbsp;If&nbsp;a&nbsp;string,&nbsp;convert&nbsp;WCS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;into&nbsp;units&nbsp;usable&nbsp;by&nbsp;WIP.&nbsp;&nbsp;The&nbsp;WCS&nbsp;can&nbsp;be&nbsp;given&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hh:mm:ss,&nbsp;dd:mm:ss&nbsp;or&nbsp;as&nbsp;degrees.&nbsp;&nbsp;Note&nbsp;that&nbsp;you&nbsp;don't<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have&nbsp;to&nbsp;give&nbsp;all&nbsp;three&nbsp;parts,&nbsp;you&nbsp;can&nbsp;omit&nbsp;the&nbsp;ss.&nbsp;&nbsp;x&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;always&nbsp;assumed&nbsp;to&nbsp;be&nbsp;RA&nbsp;and&nbsp;y&nbsp;is&nbsp;always&nbsp;assumed&nbsp;to&nbsp;be&nbsp;DEC.<br>
+majorx,majory&nbsp;-&nbsp;major&nbsp;axes&nbsp;for&nbsp;x&nbsp;and&nbsp;y.&nbsp;&nbsp;Like&nbsp;x,y&nbsp;this&nbsp;can&nbsp;be&nbsp;given&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;string&nbsp;to&nbsp;specify&nbsp;the&nbsp;WCS.<br>
+deg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;draw&nbsp;arc&nbsp;over&nbsp;this&nbsp;many&nbsp;degrees<br>
+start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;start&nbsp;drawing&nbsp;at&nbsp;this&nbsp;degree&nbsp;angle&nbsp;measured&nbsp;counter-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clockwise&nbsp;from&nbsp;+x&nbsp;axis.<br>
+angle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Tilt&nbsp;angle&nbsp;in&nbsp;degrees&nbsp;measured&nbsp;counter-clockwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;+x&nbsp;axis.<br>
+fill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;specifying&nbsp;the&nbsp;fill&nbsp;style<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;with&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;line<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;specifying&nbsp;the&nbsp;line&nbsp;style<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;thickness&nbsp;of&nbsp;lines<br>
+&nbsp;&nbsp;&nbsp;fillcolor&nbsp;-&nbsp;color&nbsp;to&nbsp;fill&nbsp;arc&nbsp;with.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;color.<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;a&nbsp;list/tuple,&nbsp;use&nbsp;as&nbsp;limits.&nbsp;&nbsp;Otherwise&nbsp;try&nbsp;to&nbsp;use<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;prexisting&nbsp;limits&nbsp;or&nbsp;set&nbsp;new&nbsp;ones<br>
+&nbsp;&nbsp;&nbsp;logx,logy&nbsp;-&nbsp;If&nbsp;True,&nbsp;make&nbsp;logarithmic&nbsp;in&nbsp;x/y&nbsp;direction.&nbsp;&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;to&nbsp;what&nbsp;has&nbsp;already&nbsp;been&nbsp;set&nbsp;for&nbsp;plot/panel.</tt></dd></dl>
+ <dl><dt><a name="-arrow"><strong>arrow</strong></a>(xcol, ycol, taper<font color="#909090">=45</font>, vent<font color="#909090">=0.0</font>, fill<font color="#909090">='s'</font>, **args)</dt><dd><tt>Draw&nbsp;a&nbsp;single&nbsp;arrow.<br>
+&nbsp;<br>
+If&nbsp;you&nbsp;want&nbsp;many&nbsp;arrows,&nbsp;consider&nbsp;using&nbsp;the&nbsp;<a href="#-vector">vector</a>()&nbsp;command.&nbsp;&nbsp;The<br>
+coordinates&nbsp;given&nbsp;by&nbsp;xcol&nbsp;and&nbsp;ycol&nbsp;can&nbsp;be&nbsp;WCS&nbsp;coordinates,&nbsp;following&nbsp;the<br>
+usual&nbsp;style&nbsp;for&nbsp;specifying&nbsp;them,&nbsp;i.e.&nbsp;as&nbsp;a&nbsp;sexagesimal&nbsp;string&nbsp;or&nbsp;a&nbsp;string<br>
+for&nbsp;the&nbsp;coordinate&nbsp;in&nbsp;degrees.<br>
+&nbsp;<br>
+xcol&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;list/tuple&nbsp;of&nbsp;the&nbsp;begin&nbsp;and&nbsp;end&nbsp;x&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;arrow<br>
+ycol&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;list/tuple&nbsp;of&nbsp;the&nbsp;begin&nbsp;and&nbsp;end&nbsp;y&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;arrow<br>
+taper&nbsp;&nbsp;-&nbsp;tapering&nbsp;angle,&nbsp;in&nbsp;degrees,&nbsp;for&nbsp;the&nbsp;arrowhead<br>
+vent&nbsp;&nbsp;&nbsp;-&nbsp;fraction&nbsp;of&nbsp;the&nbsp;arrowhead&nbsp;that&nbsp;is&nbsp;cut-away&nbsp;in&nbsp;the&nbsp;back.<br>
+fill&nbsp;&nbsp;&nbsp;-&nbsp;fill&nbsp;style&nbsp;for&nbsp;the&nbsp;arrowhead<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;arrow&nbsp;and&nbsp;arrowhead&nbsp;as&nbsp;a&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;size&nbsp;of&nbsp;the&nbsp;arrowhead<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;line&nbsp;style&nbsp;for&nbsp;drawing&nbsp;the&nbsp;arrow<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;thickness&nbsp;of&nbsp;the&nbsp;line<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;a&nbsp;list/tuple,&nbsp;use&nbsp;as&nbsp;limits.&nbsp;&nbsp;Otherwise&nbsp;try&nbsp;to&nbsp;use<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;prexisting&nbsp;limits&nbsp;or&nbsp;set&nbsp;new&nbsp;ones<br>
+&nbsp;&nbsp;&nbsp;logx,logy&nbsp;-&nbsp;If&nbsp;True,&nbsp;make&nbsp;logarithmic&nbsp;in&nbsp;x/y&nbsp;direction.&nbsp;&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;to&nbsp;what&nbsp;has&nbsp;already&nbsp;been&nbsp;set&nbsp;for&nbsp;plot/panel.<br>
+&nbsp;&nbsp;&nbsp;text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;A&nbsp;string&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;for&nbsp;the&nbsp;legend&nbsp;command.&nbsp;&nbsp;Defaults<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;None&nbsp;(don't&nbsp;add&nbsp;to&nbsp;legend).</tt></dd></dl>
+ <dl><dt><a name="-axis"><strong>axis</strong></a>(**args)</dt><dd><tt>Draw&nbsp;the&nbsp;axes.<br>
+&nbsp;<br>
+There&nbsp;are&nbsp;many&nbsp;allowed&nbsp;**args.&nbsp;&nbsp;Most&nbsp;of&nbsp;the&nbsp;time&nbsp;you&nbsp;can&nbsp;probably&nbsp;get&nbsp;by<br>
+without&nbsp;specifying&nbsp;any&nbsp;of&nbsp;them.&nbsp;&nbsp;If&nbsp;you&nbsp;need&nbsp;to&nbsp;tweak&nbsp;the&nbsp;plotting&nbsp;of&nbsp;the<br>
+axis,&nbsp;consult&nbsp;the&nbsp;User's&nbsp;Manual&nbsp;for&nbsp;a&nbsp;table&nbsp;of&nbsp;all&nbsp;the&nbsp;keywords.<br>
+&nbsp;<br>
+Additionally,&nbsp;there&nbsp;are&nbsp;the&nbsp;"standard"&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;-&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;axis&nbsp;as&nbsp;a&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;font&nbsp;&nbsp;-&nbsp;the&nbsp;font&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;axis<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;-&nbsp;the&nbsp;size&nbsp;for&nbsp;numbers&nbsp;on&nbsp;axis<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;-&nbsp;the&nbsp;line&nbsp;style<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;-&nbsp;the&nbsp;thickness&nbsp;of&nbsp;the&nbsp;lines</tt></dd></dl>
+ <dl><dt><a name="-bar"><strong>bar</strong></a>(xcol, ycol, datafile<font color="#909090">=None</font>, fill<font color="#909090">='s'</font>, angle<font color="#909090">=0</font>, barwidth<font color="#909090">=None</font>, **args)</dt><dd><tt>Draw&nbsp;a&nbsp;bar&nbsp;chart&nbsp;from&nbsp;previously&nbsp;histogrammed&nbsp;data.<br>
+&nbsp;<br>
+xcol,ycol&nbsp;-&nbsp;either&nbsp;an&nbsp;integer&nbsp;specifying&nbsp;column&nbsp;in&nbsp;datafile&nbsp;or&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list/tuple&nbsp;of&nbsp;x/y&nbsp;data&nbsp;points<br>
+datafile&nbsp;&nbsp;-&nbsp;string&nbsp;containing&nbsp;filename&nbsp;with&nbsp;data.&nbsp;&nbsp;Leave&nbsp;as&nbsp;None&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xcol&nbsp;and&nbsp;ycol&nbsp;are&nbsp;tuples/lists<br>
+fill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Fill&nbsp;style&nbsp;for&nbsp;bars,&nbsp;defaults&nbsp;to&nbsp;solid.<br>
+angle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Angle&nbsp;for&nbsp;bar&nbsp;chart,&nbsp;measured&nbsp;in&nbsp;degrees&nbsp;counter-clockwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;the&nbsp;+x&nbsp;axis.&nbsp;&nbsp;The&nbsp;only&nbsp;allowed&nbsp;values&nbsp;are&nbsp;0,90,180,270.<br>
+barwidth&nbsp;&nbsp;-&nbsp;The&nbsp;width&nbsp;of&nbsp;each&nbsp;bar&nbsp;in&nbsp;units&nbsp;of&nbsp;x&nbsp;or&nbsp;y&nbsp;axis&nbsp;(depending&nbsp;on<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;angle).&nbsp;&nbsp;Defaults&nbsp;to&nbsp;a&nbsp;width&nbsp;equal&nbsp;to&nbsp;the&nbsp;spacing&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bars.<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;<a href="#-bar">bar</a>(s)<br>
+&nbsp;&nbsp;&nbsp;fillcolor&nbsp;-&nbsp;color&nbsp;of&nbsp;inside&nbsp;of&nbsp;bar.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;color.&nbsp;&nbsp;Can&nbsp;be&nbsp;an&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer&nbsp;to&nbsp;specify&nbsp;reading&nbsp;that&nbsp;column&nbsp;number&nbsp;from&nbsp;the&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;line&nbsp;style&nbsp;for&nbsp;bars<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;thickness&nbsp;of&nbsp;the&nbsp;lines<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;a&nbsp;list/tuple,&nbsp;use&nbsp;as&nbsp;limits.&nbsp;&nbsp;Otherwise&nbsp;try&nbsp;to&nbsp;use<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;prexisting&nbsp;limits&nbsp;or&nbsp;set&nbsp;new&nbsp;ones<br>
+&nbsp;&nbsp;&nbsp;logx,logy&nbsp;-&nbsp;If&nbsp;True,&nbsp;make&nbsp;logarithmic&nbsp;in&nbsp;x/y&nbsp;direction.&nbsp;&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;to&nbsp;what&nbsp;has&nbsp;already&nbsp;been&nbsp;set&nbsp;for&nbsp;plot/panel.</tt></dd></dl>
+ <dl><dt><a name="-beam"><strong>beam</strong></a>(x, y, amajor, aminor, angle<font color="#909090">=0</font>, scale<font color="#909090">='rd'</font>, **args)</dt><dd><tt>Draw&nbsp;an&nbsp;ellipse&nbsp;showing&nbsp;a&nbsp;beam.&nbsp;&nbsp;Useful&nbsp;for&nbsp;radio&nbsp;data.<br>
+&nbsp;<br>
+x,y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Central&nbsp;coordinates&nbsp;for&nbsp;beam.&nbsp;&nbsp;If&nbsp;a&nbsp;string,&nbsp;convert&nbsp;WCS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;into&nbsp;units&nbsp;usable&nbsp;by&nbsp;WIP.&nbsp;&nbsp;The&nbsp;WCS&nbsp;can&nbsp;be&nbsp;given&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hh:mm:ss,&nbsp;dd:mm:ss&nbsp;or&nbsp;as&nbsp;degrees.<br>
+amajor,aminor&nbsp;-&nbsp;major&nbsp;and&nbsp;minor&nbsp;axes&nbsp;for&nbsp;ellipse&nbsp;as&nbsp;arcseconds.&nbsp;Like&nbsp;x,y<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;can&nbsp;be&nbsp;given&nbsp;as&nbsp;a&nbsp;string&nbsp;to&nbsp;specify&nbsp;the&nbsp;WCS.<br>
+angle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;tilt&nbsp;angle&nbsp;for&nbsp;ellipse&nbsp;given&nbsp;as&nbsp;degrees&nbsp;from&nbsp;the&nbsp;+x&nbsp;axis<br>
+scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;set&nbsp;to&nbsp;None&nbsp;for&nbsp;no&nbsp;scaling&nbsp;of&nbsp;x&nbsp;axis<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;color&nbsp;of&nbsp;edge&nbsp;of&nbsp;ellipse<br>
+&nbsp;&nbsp;&nbsp;fillcolor&nbsp;-&nbsp;color&nbsp;of&nbsp;inside&nbsp;of&nbsp;ellipse.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;color<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;line&nbsp;style&nbsp;for&nbsp;edge&nbsp;of&nbsp;ellipse<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;line&nbsp;thickness<br>
+&nbsp;&nbsp;&nbsp;bg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;color&nbsp;for&nbsp;background&nbsp;box&nbsp;surrounding&nbsp;beam.&nbsp;&nbsp;Defaults&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transparent.</tt></dd></dl>
+ <dl><dt><a name="-bin"><strong>bin</strong></a>(xcol, ycol, datafile<font color="#909090">=None</font>, coord<font color="#909090">='center'</font>, **args)</dt><dd><tt>Draw&nbsp;a&nbsp;histogram&nbsp;from&nbsp;previously&nbsp;histogrammed&nbsp;data.<br>
+&nbsp;<br>
+xcol,ycol&nbsp;-&nbsp;either&nbsp;an&nbsp;integer&nbsp;specifying&nbsp;column&nbsp;in&nbsp;datafile&nbsp;or&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list/tuple&nbsp;of&nbsp;x/y&nbsp;data&nbsp;points<br>
+datafile&nbsp;&nbsp;-&nbsp;string&nbsp;containing&nbsp;filename&nbsp;with&nbsp;data.&nbsp;&nbsp;Leave&nbsp;as&nbsp;None&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xcol&nbsp;and&nbsp;ycol&nbsp;are&nbsp;tuples/lists<br>
+coord&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;are&nbsp;x&nbsp;coordinates&nbsp;the&nbsp;center&nbsp;or&nbsp;left&nbsp;side&nbsp;of&nbsp;the&nbsp;bin?<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;histogram<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;line&nbsp;style&nbsp;for&nbsp;histogram<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;thickness&nbsp;of&nbsp;the&nbsp;histogram<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;a&nbsp;list/tuple,&nbsp;use&nbsp;as&nbsp;limits.&nbsp;&nbsp;Otherwise&nbsp;try&nbsp;to&nbsp;use<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;prexisting&nbsp;limits&nbsp;or&nbsp;set&nbsp;new&nbsp;ones<br>
+&nbsp;&nbsp;&nbsp;logx,logy&nbsp;-&nbsp;If&nbsp;True,&nbsp;make&nbsp;logarithmic&nbsp;in&nbsp;x/y&nbsp;direction.&nbsp;&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;to&nbsp;what&nbsp;has&nbsp;already&nbsp;been&nbsp;set&nbsp;for&nbsp;plot/panel.<br>
+&nbsp;&nbsp;&nbsp;text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;A&nbsp;string&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;for&nbsp;the&nbsp;legend&nbsp;command.&nbsp;&nbsp;Defaults<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;None&nbsp;(don't&nbsp;add&nbsp;to&nbsp;legend).</tt></dd></dl>
+ <dl><dt><a name="-blowup"><strong>blowup</strong></a>(xmin, xmax, ymin, ymax, corners<font color="#909090">=['ll', 'ul']</font>, **args)</dt><dd><tt>Draw&nbsp;a&nbsp;blow-up&nbsp;box&nbsp;around&nbsp;a&nbsp;given&nbsp;region.<br>
+&nbsp;<br>
+Use&nbsp;in&nbsp;conjunction&nbsp;with&nbsp;<a href="#-connect">connect</a>()&nbsp;to&nbsp;draw&nbsp;connecting&nbsp;lines&nbsp;from&nbsp;the<br>
+blowup&nbsp;box&nbsp;to&nbsp;the&nbsp;actual&nbsp;zoomed&nbsp;region.<br>
+&nbsp;<br>
+xmin,xmax,ymin,ymax&nbsp;-&nbsp;four&nbsp;values&nbsp;for&nbsp;limits&nbsp;of&nbsp;blowup&nbsp;box&nbsp;given&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pixel&nbsp;values<br>
+corners&nbsp;-&nbsp;a&nbsp;two&nbsp;element&nbsp;list&nbsp;of&nbsp;ll,ul,lr,&nbsp;or&nbsp;ur&nbsp;to&nbsp;specify&nbsp;which&nbsp;corners<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;the&nbsp;box&nbsp;to&nbsp;store&nbsp;in&nbsp;memory.&nbsp;&nbsp;These&nbsp;correspond&nbsp;to&nbsp;lower&nbsp;left,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;upper&nbsp;left,lower&nbsp;right,&nbsp;upper&nbsp;right<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;box<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;linestyle&nbsp;for&nbsp;the&nbsp;box<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;thickness&nbsp;of&nbsp;the&nbsp;box</tt></dd></dl>
+ <dl><dt><a name="-compass"><strong>compass</strong></a>(x, y, angle, length, start<font color="#909090">=90</font>, wcs<font color="#909090">='rd'</font>, **args)</dt><dd><tt>Plot&nbsp;a&nbsp;compass&nbsp;of&nbsp;ra/dec&nbsp;or&nbsp;galactic&nbsp;l&nbsp;and&nbsp;b&nbsp;coordinates<br>
+&nbsp;<br>
+x,y&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;coordinates&nbsp;for&nbsp;base&nbsp;of&nbsp;compass&nbsp;vectors<br>
+angle&nbsp;&nbsp;-&nbsp;Angle&nbsp;in&nbsp;degrees&nbsp;to&nbsp;rotate&nbsp;compass&nbsp;counter-clockwise<br>
+length&nbsp;-&nbsp;length&nbsp;of&nbsp;compass&nbsp;vectors&nbsp;(probably&nbsp;pixels)<br>
+start&nbsp;&nbsp;-&nbsp;starting&nbsp;angle&nbsp;from&nbsp;+x&nbsp;that&nbsp;corresponds&nbsp;to&nbsp;zero.&nbsp;&nbsp;The&nbsp;default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;90&nbsp;means&nbsp;that&nbsp;zero&nbsp;degrees&nbsp;is&nbsp;the&nbsp;+y&nbsp;axis.&nbsp;&nbsp;This&nbsp;is&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;normal&nbsp;convention&nbsp;in&nbsp;polarization&nbsp;maps.<br>
+wcs&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;can&nbsp;be&nbsp;'rd'&nbsp;for&nbsp;RA/DEC&nbsp;compass&nbsp;or&nbsp;'gl'&nbsp;for&nbsp;galactic&nbsp;compass<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;color&nbsp;of&nbsp;the&nbsp;compass&nbsp;vectors<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Size&nbsp;of&nbsp;vectors<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Line&nbsp;width&nbsp;of&nbsp;vectors</tt></dd></dl>
+ <dl><dt><a name="-connect"><strong>connect</strong></a>(corners<font color="#909090">=['ll', 'ul']</font>, **args)</dt><dd><tt>Draw&nbsp;lines&nbsp;connecting&nbsp;a&nbsp;blow-up&nbsp;region&nbsp;to&nbsp;the&nbsp;current&nbsp;viewport&nbsp;coordinates.<br>
+&nbsp;<br>
+corners&nbsp;-&nbsp;a&nbsp;two&nbsp;element&nbsp;list&nbsp;of&nbsp;ll,ul,lr,&nbsp;or&nbsp;ur&nbsp;to&nbsp;specify&nbsp;which&nbsp;corners<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;the&nbsp;box&nbsp;to&nbsp;store&nbsp;in&nbsp;memory.&nbsp;&nbsp;These&nbsp;correspond&nbsp;to&nbsp;lower&nbsp;left,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;upper&nbsp;left,lower&nbsp;right,&nbsp;upper&nbsp;right<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;lines<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;linestyle&nbsp;for&nbsp;the&nbsp;lines<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;thickness&nbsp;of&nbsp;the&nbsp;lines</tt></dd></dl>
+ <dl><dt><a name="-contour"><strong>contour</strong></a>(image, levels, head<font color="#909090">='rd'</font>, routine<font color="#909090">='smooth'</font>, unit<font color="#909090">='step'</font>, **args)</dt><dd><tt>Draw&nbsp;contours&nbsp;with&nbsp;the&nbsp;specified&nbsp;levels.<br>
+&nbsp;<br>
+image&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;image<br>
+levels&nbsp;&nbsp;-&nbsp;a&nbsp;list/tuple,string,or&nbsp;integer&nbsp;of&nbsp;contour&nbsp;levels.<br>
+&nbsp;&nbsp;&nbsp;list/tuple&nbsp;-&nbsp;draw&nbsp;contours&nbsp;at&nbsp;specified&nbsp;levels<br>
+&nbsp;&nbsp;&nbsp;number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;unit='nbin',&nbsp;autogenerate&nbsp;the&nbsp;given&nbsp;number&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;levels&nbsp;between&nbsp;the&nbsp;min&nbsp;and&nbsp;max.&nbsp;&nbsp;unit='step'&nbsp;is&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supported&nbsp;(there&nbsp;is&nbsp;no&nbsp;way&nbsp;for&nbsp;wip/pywip&nbsp;to&nbsp;know&nbsp;the&nbsp;min<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value).<br>
+&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;'border',&nbsp;draw&nbsp;a&nbsp;box&nbsp;around&nbsp;the&nbsp;border&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image.&nbsp;&nbsp;Otherwise,&nbsp;must&nbsp;be&nbsp;three&nbsp;numbers&nbsp;formatted&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'val1:val2:val3'.&nbsp;&nbsp;Depending&nbsp;on&nbsp;the&nbsp;keyword&nbsp;unit,&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values&nbsp;have&nbsp;different&nbsp;meanings:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unit='step'&nbsp;&nbsp;-&nbsp;string&nbsp;is&nbsp;'min:max:step'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unit='nbin'&nbsp;&nbsp;-&nbsp;string&nbsp;is&nbsp;'min:max:nbin'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unit='sigma'&nbsp;-&nbsp;string&nbsp;is&nbsp;'start:step:sigma',&nbsp;e.g.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'3:1:0.1'&nbsp;would&nbsp;start&nbsp;at&nbsp;3&nbsp;sigma,&nbsp;in&nbsp;steps&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;sigma,&nbsp;with&nbsp;1&nbsp;sigma&nbsp;being&nbsp;0.1.<br>
+head&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;of&nbsp;header&nbsp;for&nbsp;image.&nbsp;&nbsp;x&nbsp;and&nbsp;y&nbsp;can&nbsp;be&nbsp;different,&nbsp;e.g.<br>
+&nbsp;&nbsp;&nbsp;'rd&nbsp;px',&nbsp;but&nbsp;if&nbsp;only&nbsp;one&nbsp;value&nbsp;is&nbsp;given,&nbsp;it&nbsp;will&nbsp;be&nbsp;the&nbsp;same&nbsp;for&nbsp;y<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;well.&nbsp;&nbsp;The&nbsp;allowed&nbsp;values&nbsp;are:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rd&nbsp;-&nbsp;Right&nbsp;Ascension/Declination<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;so&nbsp;-&nbsp;Arcsecond&nbsp;offset<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mo&nbsp;-&nbsp;Arcminute&nbsp;offset<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po&nbsp;-&nbsp;pixel&nbsp;offset<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;px&nbsp;-&nbsp;Absolute&nbsp;pixels<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gl&nbsp;-&nbsp;General&nbsp;linear&nbsp;coordinates<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;go&nbsp;-&nbsp;General&nbsp;linear&nbsp;coordinate&nbsp;offsets<br>
+routine&nbsp;-&nbsp;how&nbsp;to&nbsp;draw&nbsp;contours:&nbsp;smooth,&nbsp;fast,&nbsp;neg.&nbsp;&nbsp;neg&nbsp;will&nbsp;draw&nbsp;negative<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contours&nbsp;with&nbsp;the&nbsp;same&nbsp;line&nbsp;style&nbsp;as&nbsp;positive&nbsp;ones.&nbsp;&nbsp;By&nbsp;default,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;negative&nbsp;contours&nbsp;are&nbsp;drawn&nbsp;dashed.<br>
+unit&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;units&nbsp;for&nbsp;levels&nbsp;keyword.&nbsp;&nbsp;See&nbsp;description&nbsp;of&nbsp;levels.<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;&nbsp;-&nbsp;The&nbsp;standard&nbsp;limits&nbsp;keyword<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;-&nbsp;color&nbsp;for&nbsp;contour&nbsp;lines<br>
+&nbsp;&nbsp;&nbsp;font&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;font&nbsp;for&nbsp;contour&nbsp;labelling&nbsp;(TODO:&nbsp;not&nbsp;supported)<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;-&nbsp;line&nbsp;style&nbsp;for&nbsp;contours<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;-&nbsp;thickness&nbsp;of&nbsp;contour&nbsp;lines</tt></dd></dl>
+ <dl><dt><a name="-curve"><strong>curve</strong></a>(**args)</dt><dd><tt>Add&nbsp;a&nbsp;curve&nbsp;to&nbsp;the&nbsp;list&nbsp;plotted&nbsp;by&nbsp;<a href="#-legend">legend</a>().<br>
+&nbsp;<br>
+A&nbsp;curve&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;that&nbsp;is&nbsp;set&nbsp;by&nbsp;the&nbsp;plot&nbsp;command&nbsp;and&nbsp;can<br>
+be&nbsp;used&nbsp;with&nbsp;the&nbsp;legend&nbsp;command&nbsp;to&nbsp;make&nbsp;it&nbsp;easier&nbsp;to&nbsp;make&nbsp;legends.&nbsp;&nbsp;This<br>
+allows&nbsp;you&nbsp;to&nbsp;add&nbsp;an&nbsp;extra&nbsp;curve&nbsp;to&nbsp;those&nbsp;listed&nbsp;by&nbsp;<a href="#-legend">legend</a>()&nbsp;without<br>
+having&nbsp;to&nbsp;call&nbsp;<a href="#-plot">plot</a>().<br>
+&nbsp;<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;-&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;data<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;-&nbsp;The&nbsp;size&nbsp;for&nbsp;each&nbsp;data&nbsp;point<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;-&nbsp;line&nbsp;style&nbsp;for&nbsp;the&nbsp;data<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;-&nbsp;the&nbsp;thickness&nbsp;of&nbsp;the&nbsp;line&nbsp;for&nbsp;drawing&nbsp;the&nbsp;curve<br>
+&nbsp;&nbsp;&nbsp;text&nbsp;&nbsp;-&nbsp;Text&nbsp;to&nbsp;describe&nbsp;the&nbsp;curve<br>
+&nbsp;&nbsp;&nbsp;fillcolor&nbsp;-&nbsp;Color&nbsp;to&nbsp;fill&nbsp;symbols&nbsp;with</tt></dd></dl>
+ <dl><dt><a name="-default"><strong>default</strong></a>(**args)</dt><dd><tt>Set&nbsp;default&nbsp;parameters&nbsp;that&nbsp;will&nbsp;be&nbsp;used&nbsp;for&nbsp;everything&nbsp;in&nbsp;the&nbsp;plot.<br>
+&nbsp;<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;default&nbsp;color<br>
+&nbsp;&nbsp;&nbsp;font&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;default&nbsp;font<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;default&nbsp;size&nbsp;for&nbsp;everything<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;default&nbsp;line&nbsp;style<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;default&nbsp;width&nbsp;of&nbsp;lines<br>
+&nbsp;&nbsp;&nbsp;bg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;background&nbsp;color&nbsp;for&nbsp;text.&nbsp;&nbsp;Use&nbsp;'t'&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transparent&nbsp;(the&nbsp;default).</tt></dd></dl>
+ <dl><dt><a name="-errorbar"><strong>errorbar</strong></a>(xcol, ycol, datafile<font color="#909090">=None</font>, xerr<font color="#909090">=None</font>, yerr<font color="#909090">=None</font>, **args)</dt><dd><tt>Draw&nbsp;x,y&nbsp;errorbars&nbsp;on&nbsp;some&nbsp;data.<br>
+&nbsp;<br>
+xcol,ycol&nbsp;-&nbsp;Integer&nbsp;or&nbsp;list/tuple&nbsp;of&nbsp;x/y&nbsp;data<br>
+datafile&nbsp;&nbsp;-&nbsp;If&nbsp;a&nbsp;string,&nbsp;read&nbsp;columns&nbsp;xcol&nbsp;and&nbsp;ycol&nbsp;from&nbsp;datafile<br>
+xerr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Integer&nbsp;or&nbsp;list/tuple&nbsp;of&nbsp;x&nbsp;errorbars.&nbsp;&nbsp;If&nbsp;int,&nbsp;read&nbsp;specified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;column&nbsp;from&nbsp;datafile<br>
+yerr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Integer&nbsp;or&nbsp;list/tuple&nbsp;of&nbsp;y&nbsp;errorbars.&nbsp;&nbsp;If&nbsp;int,&nbsp;read&nbsp;specified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;column&nbsp;from&nbsp;datafile<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;A&nbsp;string&nbsp;specifying&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;errorbars<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;A&nbsp;number&nbsp;specifying&nbsp;the&nbsp;size&nbsp;of&nbsp;the&nbsp;caps&nbsp;on&nbsp;the&nbsp;errorbars<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;A&nbsp;string&nbsp;specifying&nbsp;the&nbsp;line&nbsp;style<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;A&nbsp;number&nbsp;specifying&nbsp;the&nbsp;line&nbsp;thickness<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;a&nbsp;list/tuple,&nbsp;use&nbsp;as&nbsp;limits.&nbsp;&nbsp;Otherwise&nbsp;try&nbsp;to&nbsp;use<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;prexisting&nbsp;limits&nbsp;or&nbsp;set&nbsp;new&nbsp;ones<br>
+&nbsp;&nbsp;&nbsp;logx,logy&nbsp;-&nbsp;If&nbsp;True,&nbsp;make&nbsp;logarithmic&nbsp;in&nbsp;x/y&nbsp;direction.&nbsp;&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;to&nbsp;what&nbsp;has&nbsp;already&nbsp;been&nbsp;set&nbsp;for&nbsp;plot/panel.</tt></dd></dl>
+ <dl><dt><a name="-halftone"><strong>halftone</strong></a>(image, head<font color="#909090">='rd'</font>, palette<font color="#909090">='gray'</font>, minmax<font color="#909090">=('immin', 'immax')</font>, scale<font color="#909090">='linear'</font>, **args)</dt><dd><tt>Plot&nbsp;a&nbsp;halftone&nbsp;image&nbsp;with&nbsp;specified&nbsp;palette.<br>
+&nbsp;<br>
+Before&nbsp;using&nbsp;this,&nbsp;one&nbsp;should&nbsp;call&nbsp;winadj&nbsp;to&nbsp;make&nbsp;sure&nbsp;your&nbsp;pixels&nbsp;come<br>
+out&nbsp;square.<br>
+&nbsp;<br>
+image&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;image<br>
+head&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;of&nbsp;header&nbsp;for&nbsp;image.&nbsp;&nbsp;x&nbsp;and&nbsp;y&nbsp;can&nbsp;be&nbsp;different,&nbsp;e.g.<br>
+&nbsp;&nbsp;&nbsp;'rd&nbsp;px',&nbsp;but&nbsp;if&nbsp;only&nbsp;one&nbsp;value&nbsp;is&nbsp;given,&nbsp;it&nbsp;will&nbsp;be&nbsp;the&nbsp;same&nbsp;for&nbsp;y<br>
+&nbsp;&nbsp;&nbsp;as&nbsp;well.&nbsp;&nbsp;The&nbsp;allowed&nbsp;values&nbsp;are:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rd&nbsp;-&nbsp;Right&nbsp;Ascension/Declination<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;so&nbsp;-&nbsp;Arcsecond&nbsp;offset<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mo&nbsp;-&nbsp;Arcminute&nbsp;offset<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po&nbsp;-&nbsp;pixel&nbsp;offset<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;px&nbsp;-&nbsp;Absolute&nbsp;pixels<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gl&nbsp;-&nbsp;General&nbsp;linear&nbsp;coordinates<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;go&nbsp;-&nbsp;General&nbsp;linear&nbsp;coordinate&nbsp;offsets<br>
+palette&nbsp;-&nbsp;color&nbsp;palette&nbsp;for&nbsp;halftone<br>
+minmax&nbsp;&nbsp;-&nbsp;list&nbsp;or&nbsp;tuple&nbsp;of&nbsp;(min,max)&nbsp;halftone&nbsp;limits&nbsp;to&nbsp;display.&nbsp;&nbsp;The<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;is&nbsp;the&nbsp;minimum&nbsp;and&nbsp;maximum&nbsp;of&nbsp;the&nbsp;image.<br>
+scale&nbsp;&nbsp;&nbsp;-&nbsp;scale&nbsp;for&nbsp;image&nbsp;can&nbsp;be&nbsp;linear,&nbsp;log&nbsp;(logarithmic),&nbsp;or&nbsp;sqrt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(square&nbsp;root).<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;-&nbsp;The&nbsp;standard&nbsp;limits&nbsp;keyword</tt></dd></dl>
+ <dl><dt><a name="-inputwip"><strong>inputwip</strong></a>(filename, **args)</dt><dd><tt>Input&nbsp;the&nbsp;given&nbsp;filename&nbsp;directly&nbsp;as&nbsp;raw&nbsp;WIP&nbsp;commands.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;a&nbsp;hack&nbsp;for&nbsp;my&nbsp;manually&nbsp;drawn&nbsp;tickmarks&nbsp;because&nbsp;WIP&nbsp;does&nbsp;not&nbsp;do<br>
+proper&nbsp;WCS&nbsp;projections.&nbsp;&nbsp;For&nbsp;now,&nbsp;I&nbsp;have&nbsp;another&nbsp;script&nbsp;to&nbsp;make&nbsp;the<br>
+tickmarks&nbsp;file,&nbsp;which&nbsp;should&nbsp;be&nbsp;added&nbsp;to&nbsp;the&nbsp;plot&nbsp;as&nbsp;raw&nbsp;WIP&nbsp;commands.<br>
+&nbsp;<br>
+Allowed&nbsp;options&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;text<br>
+&nbsp;&nbsp;&nbsp;font&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;font&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;text<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;size&nbsp;for&nbsp;text<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;line&nbsp;style&nbsp;for&nbsp;the&nbsp;text<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;thickness&nbsp;of&nbsp;the&nbsp;line<br>
+&nbsp;&nbsp;&nbsp;bg&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;color&nbsp;for&nbsp;background&nbsp;of&nbsp;text.&nbsp;&nbsp;Default&nbsp;is&nbsp;transparent</tt></dd></dl>
+ <dl><dt><a name="-legend"><strong>legend</strong></a>(x, y, height<font color="#909090">=2</font>, length<font color="#909090">=2</font>, **args)</dt><dd><tt>Make&nbsp;an&nbsp;entire&nbsp;legend&nbsp;box.<br>
+&nbsp;<br>
+x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;x&nbsp;location&nbsp;of&nbsp;upper&nbsp;left&nbsp;corner&nbsp;as&nbsp;a&nbsp;fraction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(e.g.&nbsp;0.5&nbsp;would&nbsp;be&nbsp;centered)<br>
+y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;y&nbsp;location&nbsp;of&nbsp;upper&nbsp;left&nbsp;corner&nbsp;as&nbsp;a&nbsp;fraction<br>
+height&nbsp;-&nbsp;vertical&nbsp;skip&nbsp;(in&nbsp;char.&nbsp;units)&nbsp;between&nbsp;entries<br>
+length&nbsp;-&nbsp;horizontal&nbsp;space&nbsp;(in&nbsp;char.&nbsp;units)&nbsp;for&nbsp;line/symbol<br>
+&nbsp;<br>
+Allowed&nbsp;options&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;text<br>
+&nbsp;&nbsp;&nbsp;font&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;font&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;text<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;size&nbsp;for&nbsp;text<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;line&nbsp;style&nbsp;for&nbsp;the&nbsp;text<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;thickness&nbsp;of&nbsp;the&nbsp;line<br>
+&nbsp;&nbsp;&nbsp;bg&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;color&nbsp;for&nbsp;background&nbsp;of&nbsp;text.&nbsp;&nbsp;Default&nbsp;is&nbsp;transparent</tt></dd></dl>
+ <dl><dt><a name="-panel"><strong>panel</strong></a>(idx, **args)</dt><dd><tt>Switch&nbsp;to&nbsp;panel&nbsp;idx.<br>
+&nbsp;<br>
+The&nbsp;nx,ny&nbsp;(and&nbsp;optionally&nbsp;gapx,gapy,&nbsp;and&nbsp;start)&nbsp;parameters&nbsp;should&nbsp;only<br>
+be&nbsp;set&nbsp;for&nbsp;the&nbsp;first&nbsp;call&nbsp;to&nbsp;<a href="#-panel">panel</a>().&nbsp;&nbsp;Thereafter,&nbsp;those&nbsp;values&nbsp;will&nbsp;be<br>
+remembered.<br>
+&nbsp;<br>
+There&nbsp;are&nbsp;nx,ny&nbsp;panels&nbsp;in&nbsp;a&nbsp;grid.&nbsp;&nbsp;The&nbsp;space&nbsp;between&nbsp;panels&nbsp;in&nbsp;the<br>
+x&nbsp;and&nbsp;y&nbsp;directions&nbsp;is&nbsp;controlled&nbsp;by&nbsp;gapx&nbsp;and&nbsp;gapy.&nbsp;&nbsp;By&nbsp;default,&nbsp;panels<br>
+are&nbsp;counted&nbsp;from&nbsp;the&nbsp;top&nbsp;left&nbsp;going&nbsp;across,&nbsp;then&nbsp;down.&nbsp;&nbsp;To&nbsp;start&nbsp;at<br>
+the&nbsp;bottom&nbsp;left&nbsp;going&nbsp;across&nbsp;and&nbsp;up,&nbsp;set&nbsp;the&nbsp;start&nbsp;keyword&nbsp;to&nbsp;'bottom'.<br>
+&nbsp;<br>
+&nbsp;<br>
+idx&nbsp;&nbsp;&nbsp;-&nbsp;Current&nbsp;panel&nbsp;number,&nbsp;(starts&nbsp;counting&nbsp;at&nbsp;1)<br>
+Optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;nx&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Number&nbsp;of&nbsp;panels&nbsp;in&nbsp;x&nbsp;direction&nbsp;(defaults&nbsp;to&nbsp;1)<br>
+&nbsp;&nbsp;&nbsp;ny&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Number&nbsp;of&nbsp;panels&nbsp;in&nbsp;y&nbsp;direction&nbsp;(defaults&nbsp;to&nbsp;1)<br>
+&nbsp;&nbsp;&nbsp;gapx&nbsp;&nbsp;-&nbsp;space&nbsp;between&nbsp;panels&nbsp;in&nbsp;the&nbsp;x&nbsp;direction&nbsp;(defaults&nbsp;to&nbsp;2)<br>
+&nbsp;&nbsp;&nbsp;gapy&nbsp;&nbsp;-&nbsp;space&nbsp;between&nbsp;panels&nbsp;in&nbsp;the&nbsp;y&nbsp;direction&nbsp;(defaults&nbsp;to&nbsp;2)<br>
+&nbsp;&nbsp;&nbsp;start&nbsp;-&nbsp;Panel&nbsp;number&nbsp;1&nbsp;will&nbsp;be&nbsp;at&nbsp;the&nbsp;top-left&nbsp;('top')&nbsp;or&nbsp;bottom-left<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('bottom').&nbsp;&nbsp;Defaults&nbsp;to&nbsp;'top'</tt></dd></dl>
+ <dl><dt><a name="-plot"><strong>plot</strong></a>(xcol, ycol, datafile<font color="#909090">=None</font>, **args)</dt><dd><tt>Plot&nbsp;data&nbsp;from&nbsp;a&nbsp;file&nbsp;or&nbsp;input&nbsp;lists/tuples.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;is&nbsp;extremely&nbsp;versatile&nbsp;and&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;plot&nbsp;data<br>
+points&nbsp;and&nbsp;lines.&nbsp;&nbsp;Note&nbsp;that&nbsp;when&nbsp;specifying&nbsp;column&nbsp;numbers&nbsp;from&nbsp;a&nbsp;file,<br>
+columns&nbsp;are&nbsp;counted&nbsp;starting&nbsp;from&nbsp;1.<br>
+&nbsp;<br>
+xcol,ycol&nbsp;-&nbsp;either&nbsp;an&nbsp;integer,&nbsp;list,&nbsp;or&nbsp;tuple&nbsp;for&nbsp;x/y&nbsp;data&nbsp;points.&nbsp;&nbsp;If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integers,&nbsp;these&nbsp;are&nbsp;column&nbsp;numbers&nbsp;to&nbsp;read&nbsp;from&nbsp;the&nbsp;specified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;datafile.<br>
+datafile&nbsp;&nbsp;-&nbsp;string&nbsp;name&nbsp;of&nbsp;input&nbsp;data&nbsp;file.&nbsp;&nbsp;Leave&nbsp;as&nbsp;None&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xcol&nbsp;and&nbsp;ycol&nbsp;are&nbsp;a&nbsp;sequence&nbsp;of&nbsp;numbers<br>
+Allowed&nbsp;options&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;a&nbsp;string,&nbsp;use&nbsp;as&nbsp;the&nbsp;color&nbsp;for&nbsp;every&nbsp;point.&nbsp;&nbsp;If&nbsp;an<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer,&nbsp;read&nbsp;that&nbsp;column&nbsp;from&nbsp;the&nbsp;datafile&nbsp;for&nbsp;color<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;for&nbsp;each&nbsp;point.&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;specify&nbsp;a&nbsp;sequence&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have&nbsp;different&nbsp;colors&nbsp;for&nbsp;each&nbsp;point.&nbsp;&nbsp;This&nbsp;somewhat&nbsp;works,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;provided&nbsp;number&nbsp;of&nbsp;points&nbsp;&gt;&nbsp;10.&nbsp;&nbsp;There&nbsp;are&nbsp;probably&nbsp;other<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;limitations&nbsp;too.&nbsp;&nbsp;Note&nbsp;that&nbsp;lines&nbsp;cannot&nbsp;have&nbsp;multiple<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;colors&nbsp;(this&nbsp;is&nbsp;a&nbsp;WIP&nbsp;limitation).<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;size&nbsp;for&nbsp;each&nbsp;data&nbsp;point.<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;a&nbsp;string,&nbsp;use&nbsp;as&nbsp;the&nbsp;symbol&nbsp;or&nbsp;line&nbsp;style.&nbsp;&nbsp;If&nbsp;an<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer,&nbsp;then&nbsp;read&nbsp;from&nbsp;datafile&nbsp;for&nbsp;symbol&nbsp;for&nbsp;each&nbsp;point.<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Line&nbsp;width<br>
+&nbsp;&nbsp;&nbsp;fillcolor&nbsp;-&nbsp;Color&nbsp;to&nbsp;fill&nbsp;symbols&nbsp;with.&nbsp;&nbsp;Only&nbsp;available&nbsp;for&nbsp;five-point<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stars,&nbsp;squares,&nbsp;circles,&nbsp;and&nbsp;triangles.&nbsp;&nbsp;If&nbsp;used<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inappropriately,&nbsp;an&nbsp;error&nbsp;will&nbsp;occur.&nbsp;&nbsp;Use&nbsp;in&nbsp;the&nbsp;same&nbsp;way<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as&nbsp;for&nbsp;color&nbsp;keyword.&nbsp;&nbsp;You&nbsp;can&nbsp;specify&nbsp;an&nbsp;integer,&nbsp;which<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;then&nbsp;read&nbsp;the&nbsp;specified&nbsp;color&nbsp;from&nbsp;the&nbsp;datafile&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;each&nbsp;point.&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;specify&nbsp;a&nbsp;sequence,&nbsp;as&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color.<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;None,&nbsp;set&nbsp;min/max&nbsp;to&nbsp;values&nbsp;in&nbsp;xcol&nbsp;and&nbsp;ycol.&nbsp;&nbsp;If&nbsp;a&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;tuple&nbsp;of&nbsp;xmin,xmax,ymin,ymax,&nbsp;set&nbsp;to&nbsp;specified&nbsp;values.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;anything&nbsp;else,&nbsp;do&nbsp;not&nbsp;attempt&nbsp;to&nbsp;set&nbsp;any&nbsp;limits&nbsp;(i.e.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assume&nbsp;they&nbsp;have&nbsp;already&nbsp;been&nbsp;set&nbsp;to&nbsp;something&nbsp;sensible)<br>
+&nbsp;&nbsp;&nbsp;logx,logy&nbsp;-&nbsp;If&nbsp;True,&nbsp;make&nbsp;logarithmic&nbsp;in&nbsp;x/y&nbsp;direction.&nbsp;&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;to&nbsp;what&nbsp;has&nbsp;already&nbsp;been&nbsp;set&nbsp;for&nbsp;plot/panel.<br>
+&nbsp;&nbsp;&nbsp;text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;A&nbsp;string&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;for&nbsp;the&nbsp;legend&nbsp;command.&nbsp;&nbsp;Defaults<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;None&nbsp;(don't&nbsp;add&nbsp;to&nbsp;legend).</tt></dd></dl>
+ <dl><dt><a name="-poly"><strong>poly</strong></a>(xcol, ycol, datafile<font color="#909090">=None</font>, fill<font color="#909090">='s'</font>, **args)</dt><dd><tt>Draw&nbsp;a&nbsp;closed&nbsp;polygon.<br>
+&nbsp;<br>
+xcol,ycol&nbsp;-&nbsp;either&nbsp;an&nbsp;integer,&nbsp;list,&nbsp;or&nbsp;tuple&nbsp;for&nbsp;x/y&nbsp;data&nbsp;points<br>
+datafile&nbsp;&nbsp;-&nbsp;string&nbsp;name&nbsp;of&nbsp;input&nbsp;data&nbsp;file.&nbsp;&nbsp;Leave&nbsp;as&nbsp;None&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xcol&nbsp;and&nbsp;ycol&nbsp;are&nbsp;a&nbsp;sequence&nbsp;of&nbsp;numbers<br>
+fill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Fill&nbsp;style&nbsp;for&nbsp;polygon,&nbsp;defaults&nbsp;to&nbsp;solid<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;color&nbsp;to&nbsp;use&nbsp;for&nbsp;line&nbsp;style<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;line&nbsp;style&nbsp;to&nbsp;draw&nbsp;polygon&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Line&nbsp;width&nbsp;of&nbsp;polygon<br>
+&nbsp;&nbsp;&nbsp;fillcolor&nbsp;-&nbsp;color&nbsp;to&nbsp;fill&nbsp;polygon&nbsp;with.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;color.<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;None,&nbsp;set&nbsp;min/max&nbsp;to&nbsp;values&nbsp;in&nbsp;xcol&nbsp;and&nbsp;ycol.&nbsp;&nbsp;If&nbsp;a&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;tuple&nbsp;of&nbsp;xmin,xmax,ymin,ymax,&nbsp;set&nbsp;to&nbsp;specified&nbsp;values.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;anything&nbsp;else,&nbsp;do&nbsp;not&nbsp;attempt&nbsp;to&nbsp;set&nbsp;any&nbsp;limits&nbsp;(i.e.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assume&nbsp;they&nbsp;have&nbsp;already&nbsp;been&nbsp;set&nbsp;to&nbsp;something&nbsp;sensible)<br>
+&nbsp;&nbsp;&nbsp;logx,logy&nbsp;-&nbsp;If&nbsp;True,&nbsp;make&nbsp;logarithmic&nbsp;in&nbsp;x/y&nbsp;direction.&nbsp;&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;to&nbsp;what&nbsp;has&nbsp;already&nbsp;been&nbsp;set&nbsp;for&nbsp;plot/panel.</tt></dd></dl>
+ <dl><dt><a name="-rect"><strong>rect</strong></a>(xmin, xmax, ymin, ymax, fill<font color="#909090">='s'</font>, **args)</dt><dd><tt>Draw&nbsp;a&nbsp;rectangle&nbsp;on&nbsp;the&nbsp;figure.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;uses&nbsp;the&nbsp;<a href="#-poly">poly</a>()&nbsp;command&nbsp;behind&nbsp;the&nbsp;scenes.<br>
+&nbsp;<br>
+xmin,xmax,ymin,ymax&nbsp;-&nbsp;the&nbsp;limits&nbsp;of&nbsp;the&nbsp;rectangle<br>
+fill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;fill&nbsp;style&nbsp;for&nbsp;rectangle<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;color&nbsp;to&nbsp;use&nbsp;for&nbsp;line&nbsp;style<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;line&nbsp;style&nbsp;to&nbsp;draw&nbsp;rectangle&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;thickness&nbsp;of&nbsp;line&nbsp;used&nbsp;to&nbsp;draw&nbsp;rectangle<br>
+&nbsp;&nbsp;&nbsp;fillcolor&nbsp;-&nbsp;color&nbsp;to&nbsp;fill&nbsp;polygon&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;a&nbsp;list/tuple,&nbsp;use&nbsp;as&nbsp;limits.&nbsp;&nbsp;Otherwise&nbsp;try&nbsp;to&nbsp;use<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;prexisting&nbsp;limits&nbsp;or&nbsp;set&nbsp;new&nbsp;ones<br>
+&nbsp;&nbsp;&nbsp;logx,logy&nbsp;-&nbsp;If&nbsp;True,&nbsp;make&nbsp;logarithmic&nbsp;in&nbsp;x/y&nbsp;direction.&nbsp;&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;to&nbsp;what&nbsp;has&nbsp;already&nbsp;been&nbsp;set&nbsp;for&nbsp;plot/panel.</tt></dd></dl>
+ <dl><dt><a name="-savefig"><strong>savefig</strong></a>(filename, orient<font color="#909090">='portrait'</font>, color<font color="#909090">=True</font>, debug<font color="#909090">=False</font>)</dt><dd><tt>Make&nbsp;the&nbsp;output&nbsp;plot&nbsp;by&nbsp;actually&nbsp;running&nbsp;wip.<br>
+&nbsp;<br>
+filename&nbsp;-&nbsp;a&nbsp;string&nbsp;or&nbsp;list/tuple&nbsp;giving&nbsp;the&nbsp;output&nbsp;filename(s)&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.gif&nbsp;or&nbsp;.ps&nbsp;extension&nbsp;(files)&nbsp;or&nbsp;.xs&nbsp;for&nbsp;an&nbsp;xwindow&nbsp;(e.g.&nbsp;1.xs).<br>
+orient&nbsp;&nbsp;&nbsp;-&nbsp;make&nbsp;plot&nbsp;portrait&nbsp;or&nbsp;landscape&nbsp;orientation?<br>
+color&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;set&nbsp;to&nbsp;False&nbsp;to&nbsp;make&nbsp;a&nbsp;black&nbsp;and&nbsp;white&nbsp;plot<br>
+debug&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;set&nbsp;to&nbsp;True&nbsp;if&nbsp;you&nbsp;do&nbsp;not&nbsp;want&nbsp;to&nbsp;delete&nbsp;all&nbsp;the&nbsp;temp&nbsp;files&nbsp;needed&nbsp;by&nbsp;wip</tt></dd></dl>
+ <dl><dt><a name="-text"><strong>text</strong></a>(x, y, text, align<font color="#909090">='left'</font>, angle<font color="#909090">=0</font>, **args)</dt><dd><tt>Put&nbsp;a&nbsp;given&nbsp;text&nbsp;label&nbsp;at&nbsp;specified&nbsp;coordinates.<br>
+&nbsp;<br>
+x,y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;coordinates&nbsp;for&nbsp;location&nbsp;of&nbsp;text<br>
+text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;of&nbsp;text&nbsp;to&nbsp;print&nbsp;out<br>
+align&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;alignment&nbsp;for&nbsp;label.&nbsp;&nbsp;Either&nbsp;left,&nbsp;center,&nbsp;or&nbsp;right<br>
+angle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;angle&nbsp;in&nbsp;degrees&nbsp;for&nbsp;text<br>
+Allowed&nbsp;options&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;font&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;font&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;size&nbsp;for&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;line&nbsp;style&nbsp;for&nbsp;the&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;width&nbsp;of&nbsp;the&nbsp;lines<br>
+&nbsp;&nbsp;&nbsp;logx,logy&nbsp;-&nbsp;If&nbsp;True,&nbsp;make&nbsp;logarithmic&nbsp;in&nbsp;x/y&nbsp;direction.&nbsp;&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;to&nbsp;what&nbsp;has&nbsp;already&nbsp;been&nbsp;set&nbsp;for&nbsp;plot/panel.<br>
+&nbsp;&nbsp;&nbsp;bg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;background&nbsp;color&nbsp;for&nbsp;text.&nbsp;&nbsp;Default&nbsp;is&nbsp;-1&nbsp;(transparent)</tt></dd></dl>
+ <dl><dt><a name="-title"><strong>title</strong></a>(text, offset<font color="#909090">=0</font>, align<font color="#909090">='center'</font>, **args)</dt><dd><tt>Set&nbsp;the&nbsp;title&nbsp;of&nbsp;the&nbsp;plot&nbsp;to&nbsp;the&nbsp;given&nbsp;text.<br>
+&nbsp;<br>
+text&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;of&nbsp;text&nbsp;to&nbsp;print&nbsp;out&nbsp;as&nbsp;title&nbsp;of&nbsp;plot<br>
+offset&nbsp;-&nbsp;offset&nbsp;for&nbsp;text&nbsp;in&nbsp;addition&nbsp;to&nbsp;standard&nbsp;offset&nbsp;for&nbsp;a&nbsp;title<br>
+align&nbsp;&nbsp;-&nbsp;alignment&nbsp;for&nbsp;label.&nbsp;&nbsp;Either&nbsp;left,&nbsp;center,&nbsp;or&nbsp;right,&nbsp;or&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;between&nbsp;zero&nbsp;and&nbsp;one.&nbsp;(zero=left,&nbsp;one=right).<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;title<br>
+&nbsp;&nbsp;&nbsp;font&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;font&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;title<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;size&nbsp;for&nbsp;the&nbsp;title<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;line&nbsp;style&nbsp;for&nbsp;the&nbsp;title<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;width&nbsp;of&nbsp;the&nbsp;lines<br>
+&nbsp;&nbsp;&nbsp;bg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;background&nbsp;color&nbsp;for&nbsp;text</tt></dd></dl>
+ <dl><dt><a name="-vector"><strong>vector</strong></a>(xcol, ycol, anglecol, lengthcol, datafile<font color="#909090">=None</font>, taper<font color="#909090">=45</font>, vent<font color="#909090">=0.0</font>, fill<font color="#909090">='s'</font>, scale<font color="#909090">=1</font>, start<font color="#909090">=90</font>, align<font color="#909090">='left'</font>, **args)</dt><dd><tt>Draw&nbsp;a&nbsp;vector&nbsp;field.<br>
+&nbsp;<br>
+lengthcol&nbsp;is&nbsp;a&nbsp;column&nbsp;with&nbsp;the&nbsp;length&nbsp;of&nbsp;each&nbsp;arrow&nbsp;and&nbsp;anglecol&nbsp;is&nbsp;the<br>
+angle&nbsp;for&nbsp;each&nbsp;arrow,&nbsp;in&nbsp;degrees.&nbsp;&nbsp;Zero&nbsp;degrees&nbsp;+x,&nbsp;and&nbsp;angles&nbsp;increase<br>
+counter-clockwise.<br>
+&nbsp;<br>
+xcol,ycol&nbsp;-&nbsp;either&nbsp;an&nbsp;integer,&nbsp;list,&nbsp;or&nbsp;tuple&nbsp;for&nbsp;x/y&nbsp;data&nbsp;points<br>
+anglecol&nbsp;&nbsp;-&nbsp;either&nbsp;an&nbsp;integer,&nbsp;list,&nbsp;or&nbsp;tuple&nbsp;for&nbsp;direction&nbsp;of&nbsp;arrows.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note,&nbsp;angles&nbsp;are&nbsp;expected&nbsp;to&nbsp;be&nbsp;degrees&nbsp;counter-clockwise&nbsp;from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;+x&nbsp;axis.&nbsp;&nbsp;The&nbsp;normal&nbsp;convention&nbsp;for&nbsp;polarization&nbsp;is&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;degrees&nbsp;counter-clockwise&nbsp;from&nbsp;North.<br>
+lengthcol&nbsp;-&nbsp;either&nbsp;an&nbsp;integer,&nbsp;list,&nbsp;or&nbsp;tuple&nbsp;for&nbsp;length&nbsp;of&nbsp;arrows<br>
+datafile&nbsp;&nbsp;-&nbsp;string&nbsp;name&nbsp;of&nbsp;input&nbsp;data&nbsp;file.&nbsp;&nbsp;Leave&nbsp;as&nbsp;None&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xcol,ycol,pcol,ecol&nbsp;are&nbsp;a&nbsp;sequence&nbsp;of&nbsp;numbers<br>
+taper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;tapering&nbsp;angle,&nbsp;in&nbsp;degrees,&nbsp;for&nbsp;the&nbsp;arrowheads&nbsp;(0-180)<br>
+vent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;fraction&nbsp;of&nbsp;each&nbsp;arrowhead&nbsp;that&nbsp;is&nbsp;cut-away&nbsp;in&nbsp;the&nbsp;back.<br>
+fill&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;fill&nbsp;style&nbsp;for&nbsp;arrow&nbsp;heads<br>
+scale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;lengths&nbsp;of&nbsp;vectors&nbsp;are&nbsp;multiplied&nbsp;by&nbsp;this&nbsp;scale&nbsp;factor<br>
+start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;starting&nbsp;angle&nbsp;from&nbsp;+x&nbsp;that&nbsp;corresponds&nbsp;to&nbsp;zero.&nbsp;&nbsp;The&nbsp;default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;90&nbsp;means&nbsp;that&nbsp;zero&nbsp;degrees&nbsp;is&nbsp;the&nbsp;+y&nbsp;axis.&nbsp;&nbsp;This&nbsp;is&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;normal&nbsp;convention&nbsp;in&nbsp;polarization&nbsp;maps.<br>
+align&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;'left'&nbsp;=&nbsp;xcol,ycol&nbsp;are&nbsp;ends&nbsp;of&nbsp;arrows,&nbsp;'center'&nbsp;=&nbsp;xcol,ycol<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;center&nbsp;of&nbsp;arrows,&nbsp;'right'&nbsp;=&nbsp;xcol,ycol&nbsp;are&nbsp;tips&nbsp;of&nbsp;arrows.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Currently,&nbsp;it&nbsp;seems&nbsp;that&nbsp;changing&nbsp;this&nbsp;from&nbsp;the&nbsp;default&nbsp;only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;works&nbsp;for&nbsp;RA,DEC&nbsp;world&nbsp;coordinate&nbsp;systems.<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;color&nbsp;for&nbsp;each&nbsp;arrow<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Size&nbsp;of&nbsp;arrows<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;line&nbsp;style&nbsp;to&nbsp;draw&nbsp;sticks&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(may&nbsp;only&nbsp;work&nbsp;for&nbsp;taper=0)<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Line&nbsp;width&nbsp;of&nbsp;arrows<br>
+&nbsp;&nbsp;&nbsp;limits&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;None,&nbsp;set&nbsp;min/max&nbsp;to&nbsp;values&nbsp;in&nbsp;xcol&nbsp;and&nbsp;ycol.&nbsp;&nbsp;If&nbsp;a&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;tuple&nbsp;of&nbsp;xmin,xmax,ymin,ymax,&nbsp;set&nbsp;to&nbsp;specified&nbsp;values.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;anything&nbsp;else,&nbsp;do&nbsp;not&nbsp;attempt&nbsp;to&nbsp;set&nbsp;any&nbsp;limits&nbsp;(i.e.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assume&nbsp;they&nbsp;have&nbsp;already&nbsp;been&nbsp;set&nbsp;to&nbsp;something&nbsp;sensible)<br>
+&nbsp;&nbsp;&nbsp;logx,logy&nbsp;-&nbsp;If&nbsp;True,&nbsp;make&nbsp;logarithmic&nbsp;in&nbsp;x/y&nbsp;direction.&nbsp;&nbsp;Otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;to&nbsp;what&nbsp;has&nbsp;already&nbsp;been&nbsp;set&nbsp;for&nbsp;plot/panel.<br>
+&nbsp;&nbsp;&nbsp;text&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;A&nbsp;string&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;for&nbsp;the&nbsp;legend&nbsp;command.&nbsp;&nbsp;Defaults<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;None&nbsp;(don't&nbsp;add&nbsp;to&nbsp;legend).</tt></dd></dl>
+ <dl><dt><a name="-viewport"><strong>viewport</strong></a>(xmin, xmax<font color="#909090">=None</font>, ymin<font color="#909090">=None</font>, ymax<font color="#909090">=None</font>)</dt><dd><tt>Use&nbsp;this&nbsp;to&nbsp;set&nbsp;the&nbsp;plot&nbsp;area.<br>
+&nbsp;<br>
+Sometimes&nbsp;WIP&nbsp;gets&nbsp;this&nbsp;wrong&nbsp;and&nbsp;part&nbsp;of&nbsp;your&nbsp;plot&nbsp;is&nbsp;off&nbsp;the&nbsp;page.<br>
+winadj&nbsp;can&nbsp;alter&nbsp;these&nbsp;values,&nbsp;but&nbsp;only&nbsp;within&nbsp;the&nbsp;bounds&nbsp;of&nbsp;the&nbsp;viewport.<br>
+&nbsp;<br>
+xmin&nbsp;-&nbsp;either&nbsp;a&nbsp;number&nbsp;or&nbsp;a&nbsp;list/tuple&nbsp;of&nbsp;four&nbsp;numbers<br>
+xmax&nbsp;-&nbsp;leave&nbsp;as&nbsp;None&nbsp;if&nbsp;xmin&nbsp;is&nbsp;a&nbsp;list/tuple<br>
+ymin&nbsp;-&nbsp;leave&nbsp;as&nbsp;None&nbsp;if&nbsp;xmin&nbsp;is&nbsp;a&nbsp;list/tuple<br>
+ymax&nbsp;-&nbsp;leave&nbsp;as&nbsp;None&nbsp;if&nbsp;xmin&nbsp;is&nbsp;a&nbsp;list/tuple</tt></dd></dl>
+ <dl><dt><a name="-wedge"><strong>wedge</strong></a>(side<font color="#909090">='right'</font>, offset<font color="#909090">=1</font>, thickness<font color="#909090">=1</font>, minmax<font color="#909090">=None</font>, **args)</dt><dd><tt>Draw&nbsp;a&nbsp;halftone&nbsp;wedge&nbsp;on&nbsp;the&nbsp;image.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;only&nbsp;useful&nbsp;for&nbsp;halftone&nbsp;images,&nbsp;though&nbsp;you&nbsp;could&nbsp;draw&nbsp;a&nbsp;wedge<br>
+without&nbsp;first&nbsp;calling&nbsp;<a href="#-halftone">halftone</a>(),&nbsp;if&nbsp;you&nbsp;felt&nbsp;perverse.&nbsp;&nbsp;Note&nbsp;that&nbsp;in<br>
+that&nbsp;case,&nbsp;you&nbsp;cannot&nbsp;set&nbsp;the&nbsp;palette.<br>
+&nbsp;<br>
+side&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;containing&nbsp;side&nbsp;to&nbsp;draw&nbsp;wedge&nbsp;on.&nbsp;&nbsp;One&nbsp;of&nbsp;left,&nbsp;right,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top,&nbsp;or&nbsp;bottom<br>
+offset&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;offset&nbsp;of&nbsp;wedge&nbsp;from&nbsp;side<br>
+thickness&nbsp;-&nbsp;thickness&nbsp;of&nbsp;wedge<br>
+minmax&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;list/tuple&nbsp;of&nbsp;the&nbsp;min/max&nbsp;values&nbsp;for&nbsp;the&nbsp;wedge.&nbsp;&nbsp;Defaults<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;whatever&nbsp;min/max&nbsp;was&nbsp;for&nbsp;halftone<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;all&nbsp;the&nbsp;<a href="#-axis">axis</a>()&nbsp;options.&nbsp;&nbsp;Too&nbsp;many&nbsp;to&nbsp;list&nbsp;here;&nbsp;see&nbsp;the&nbsp;User's&nbsp;Manual.<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;color&nbsp;for&nbsp;the&nbsp;box&nbsp;around&nbsp;the&nbsp;wedge<br>
+&nbsp;&nbsp;&nbsp;font&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;font&nbsp;for&nbsp;labelling&nbsp;the&nbsp;wedge<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;size&nbsp;of&nbsp;box&nbsp;labels&nbsp;around&nbsp;wedge<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;line&nbsp;style&nbsp;for&nbsp;box<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;thickness&nbsp;of&nbsp;box&nbsp;around&nbsp;wedge</tt></dd></dl>
+ <dl><dt><a name="-winadj"><strong>winadj</strong></a>(xfac<font color="#909090">=1</font>, yfac<font color="#909090">=1</font>, image<font color="#909090">=None</font>)</dt><dd><tt>Adjust&nbsp;the&nbsp;window&nbsp;so&nbsp;the&nbsp;plot&nbsp;will&nbsp;have&nbsp;the&nbsp;given&nbsp;aspect&nbsp;ratio.<br>
+&nbsp;<br>
+Note,&nbsp;for&nbsp;convenience&nbsp;sake,&nbsp;if&nbsp;you&nbsp;want&nbsp;to&nbsp;adjust&nbsp;a&nbsp;window&nbsp;size&nbsp;for<br>
+an&nbsp;image,&nbsp;you&nbsp;can&nbsp;just&nbsp;call&nbsp;<a href="#-winadj">winadj</a>(imagename)&nbsp;instead&nbsp;of<br>
+<a href="#-winadj">winadj</a>(image=imagename).<br>
+&nbsp;<br>
+xfac&nbsp;&nbsp;&nbsp;-&nbsp;Relative&nbsp;size&nbsp;of&nbsp;x&nbsp;dimension<br>
+yfac&nbsp;&nbsp;&nbsp;-&nbsp;Relative&nbsp;size&nbsp;of&nbsp;y&nbsp;dimension<br>
+image&nbsp;&nbsp;-&nbsp;If&nbsp;a&nbsp;string&nbsp;of&nbsp;an&nbsp;image&nbsp;name&nbsp;(and&nbsp;optionally&nbsp;a&nbsp;subimage&nbsp;defined<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ala&nbsp;IRAF's&nbsp;method&nbsp;:&nbsp;image[xmin:xmax,ymin:ymax],&nbsp;then&nbsp;adjust<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window&nbsp;according&nbsp;to&nbsp;image&nbsp;size,&nbsp;taking&nbsp;into&nbsp;account&nbsp;xfac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;yfac.</tt></dd></dl>
+ <dl><dt><a name="-xlabel"><strong>xlabel</strong></a>(text, offset<font color="#909090">=0</font>, align<font color="#909090">='center'</font>, **args)</dt><dd><tt>Set&nbsp;the&nbsp;x&nbsp;label&nbsp;to&nbsp;the&nbsp;given&nbsp;text.<br>
+&nbsp;<br>
+text&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;of&nbsp;text&nbsp;to&nbsp;print&nbsp;out&nbsp;as&nbsp;x&nbsp;axis&nbsp;label<br>
+offset&nbsp;-&nbsp;offset&nbsp;for&nbsp;text&nbsp;in&nbsp;addition&nbsp;to&nbsp;standard&nbsp;offset&nbsp;for&nbsp;an&nbsp;x&nbsp;label<br>
+align&nbsp;&nbsp;-&nbsp;alignment&nbsp;for&nbsp;label.&nbsp;&nbsp;Either&nbsp;left,&nbsp;center,&nbsp;or&nbsp;right,&nbsp;or&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;between&nbsp;zero&nbsp;and&nbsp;one.&nbsp;(zero=left,&nbsp;one=right).<br>
+Allowed&nbsp;optional&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;font&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;font&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;size&nbsp;for&nbsp;label.<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;line&nbsp;style&nbsp;for&nbsp;the&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;width&nbsp;of&nbsp;the&nbsp;lines<br>
+&nbsp;&nbsp;&nbsp;bg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;background&nbsp;color&nbsp;for&nbsp;text</tt></dd></dl>
+ <dl><dt><a name="-ylabel"><strong>ylabel</strong></a>(text, offset<font color="#909090">=0</font>, align<font color="#909090">='center'</font>, side<font color="#909090">='left'</font>, **args)</dt><dd><tt>Set&nbsp;the&nbsp;y&nbsp;label&nbsp;to&nbsp;the&nbsp;given&nbsp;text.<br>
+&nbsp;<br>
+text&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;of&nbsp;text&nbsp;to&nbsp;print&nbsp;out&nbsp;as&nbsp;y&nbsp;axis&nbsp;label<br>
+offset&nbsp;-&nbsp;offset&nbsp;for&nbsp;text&nbsp;in&nbsp;addition&nbsp;to&nbsp;standard&nbsp;offset&nbsp;for&nbsp;a&nbsp;y&nbsp;label<br>
+align&nbsp;&nbsp;-&nbsp;alignment&nbsp;for&nbsp;label.&nbsp;&nbsp;Either&nbsp;left,&nbsp;center,&nbsp;or&nbsp;right,&nbsp;or&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;between&nbsp;zero&nbsp;and&nbsp;one.&nbsp;(zero=left,&nbsp;one=right).<br>
+side&nbsp;&nbsp;&nbsp;-&nbsp;can&nbsp;be&nbsp;left&nbsp;or&nbsp;right&nbsp;to&nbsp;put&nbsp;a&nbsp;label&nbsp;on&nbsp;left/right&nbsp;sides<br>
+angle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;angle&nbsp;in&nbsp;degrees&nbsp;for&nbsp;text<br>
+Allowed&nbsp;options&nbsp;**args:<br>
+&nbsp;&nbsp;&nbsp;color&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;color&nbsp;for&nbsp;the&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;font&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;font&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;size&nbsp;for&nbsp;label.<br>
+&nbsp;&nbsp;&nbsp;style&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;giving&nbsp;the&nbsp;line&nbsp;style&nbsp;for&nbsp;the&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;width&nbsp;&nbsp;-&nbsp;a&nbsp;number&nbsp;giving&nbsp;the&nbsp;width&nbsp;of&nbsp;the&nbsp;lines<br>
+&nbsp;&nbsp;&nbsp;bg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;background&nbsp;color&nbsp;for&nbsp;text</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['arc', 'arrow', 'axis', 'bar', 'beam', 'bin', 'blowup', 'compass', 'connect', 'contour', 'curve', 'default', 'errorbar', 'halftone', 'inputwip', 'legend', 'panel', 'plot', 'poly', 'rect', ...]<br>
+<strong>__warningregistry__</strong> = {("Not importing directory './pywip/bin': missing __init__.py", &lt;type 'exceptions.ImportWarning'&gt;, 106): True}</td></tr></table>
+</body></html>

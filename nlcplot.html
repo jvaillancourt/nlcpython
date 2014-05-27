@@ -1,0 +1,335 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: package nlcplot</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>nlcplot</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/chapman/data1/Applications/nlcpython/nlcplot/__init__.py">/Users/chapman/data1/Applications/nlcpython/nlcplot/__init__.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;Started&nbsp;6&nbsp;March&nbsp;2013</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="nlcplot.arc.html">arc</a><br>
+<a href="nlcplot.arrow.html">arrow</a><br>
+<a href="nlcplot.axis.html">axis</a><br>
+<a href="nlcplot.colorbar.html">colorbar</a><br>
+<a href="nlcplot.compass.html">compass</a><br>
+<a href="nlcplot.contour.html">contour</a><br>
+<a href="nlcplot.default.html">default</a><br>
+</td><td width="25%" valign=top><a href="nlcplot.getlimits.html">getlimits</a><br>
+<a href="nlcplot.halftone.html">halftone</a><br>
+<a href="nlcplot.header.html">header</a><br>
+<a href="nlcplot.legend.html">legend</a><br>
+<a href="nlcplot.plot.html">plot</a><br>
+<a href="nlcplot.polygon.html">polygon</a><br>
+<a href="nlcplot.rect.html">rect</a><br>
+</td><td width="25%" valign=top><a href="nlcplot.regionfile.html">regionfile</a><br>
+<a href="nlcplot.savefig.html">savefig</a><br>
+<a href="nlcplot.stick.html">stick</a><br>
+<a href="nlcplot.subplot.html">subplot</a><br>
+<a href="nlcplot.subplot2.html">subplot2</a><br>
+<a href="nlcplot.text.html">text</a><br>
+<a href="nlcplot.tickmarks.html">tickmarks</a><br>
+</td><td width="25%" valign=top><a href="nlcplot.title.html">title</a><br>
+<a href="nlcplot.vector.html">vector</a><br>
+<a href="nlcplot.vectorkey.html">vectorkey</a><br>
+<a href="nlcplot.xlabel.html">xlabel</a><br>
+<a href="nlcplot.ylabel.html">ylabel</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-arc"><strong>arc</strong></a>(x, y, xmajor, ymajor, angle<font color="#909090">=0</font>, theta1<font color="#909090">=0</font>, theta2<font color="#909090">=360</font>, **args)</dt><dd><tt>Draw&nbsp;an&nbsp;Arc,&nbsp;circle,&nbsp;or&nbsp;ellipse<br>
+&nbsp;<br>
+x,y&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;coordinates&nbsp;for&nbsp;center&nbsp;of&nbsp;arc<br>
+xmajor,ymajor&nbsp;-&nbsp;major&nbsp;and&nbsp;minor&nbsp;axes&nbsp;(TODO:&nbsp;MUST&nbsp;be&nbsp;in&nbsp;pixels&nbsp;for&nbsp;now)<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+coord&nbsp;-&nbsp;Input&nbsp;coordinates&nbsp;for&nbsp;x,y.&nbsp;&nbsp;Set&nbsp;to&nbsp;one&nbsp;of:&nbsp;pix,&nbsp;deg,&nbsp;hms,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do&nbsp;(degrees&nbsp;offset),&nbsp;mo&nbsp;(arcminutes&nbsp;offset),&nbsp;so&nbsp;(arcseconds&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset).&nbsp;Pixels&nbsp;start&nbsp;at&nbsp;1.<br>
+fill&nbsp;&nbsp;-&nbsp;Fill&nbsp;style.&nbsp;&nbsp;Set&nbsp;to&nbsp;None&nbsp;for&nbsp;no&nbsp;fill.&nbsp;&nbsp;TODO:&nbsp;other&nbsp;options?<br>
+wcs&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;wcs&nbsp;(defined&nbsp;by&nbsp;pywcs)&nbsp;used&nbsp;to&nbsp;convert&nbsp;from&nbsp;world&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;pixels.&nbsp;&nbsp;If&nbsp;none,&nbsp;try&nbsp;to&nbsp;use&nbsp;a&nbsp;previously&nbsp;defined&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.,&nbsp;when&nbsp;halftone&nbsp;or&nbsp;contours&nbsp;were&nbsp;plotted).</tt></dd></dl>
+ <dl><dt><a name="-arrow"><strong>arrow</strong></a>(x, y, length, angle, start<font color="#909090">=90</font>, **args)</dt><dd><tt>Plot&nbsp;a&nbsp;single&nbsp;arrow<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+color<br>
+coord&nbsp;-&nbsp;Input&nbsp;coordinates&nbsp;for&nbsp;x,y.&nbsp;&nbsp;Set&nbsp;to&nbsp;one&nbsp;of:&nbsp;pix,&nbsp;deg,&nbsp;do&nbsp;(degrees<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset),&nbsp;mo&nbsp;(arcminutes&nbsp;offset),&nbsp;so&nbsp;(arcseconds&nbsp;offset).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pixels&nbsp;start&nbsp;at&nbsp;1.<br>
+wcs&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;wcs&nbsp;(defined&nbsp;by&nbsp;pywcs)&nbsp;used&nbsp;to&nbsp;convert&nbsp;from&nbsp;world&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;pixels.&nbsp;&nbsp;If&nbsp;none,&nbsp;try&nbsp;to&nbsp;use&nbsp;a&nbsp;previously&nbsp;defined&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.,&nbsp;when&nbsp;halftone&nbsp;or&nbsp;contours&nbsp;were&nbsp;plotted).</tt></dd></dl>
+ <dl><dt><a name="-axis"><strong>axis</strong></a>(box<font color="#909090">='top,bottom,left,right'</font>, coord<font color="#909090">='pix'</font>, limits<font color="#909090">=None</font>, number<font color="#909090">='bottom,left'</font>, xgrid<font color="#909090">=''</font>, ygrid<font color="#909090">=''</font>, xlog<font color="#909090">=False</font>, ylog<font color="#909090">=False</font>, xtick<font color="#909090">='major,minor,inside'</font>, ytick<font color="#909090">='major,minor,inside'</font>, limitscoord<font color="#909090">='pix'</font>, **args)</dt><dd><tt>Plot&nbsp;the&nbsp;axis.<br>
+box&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;controls&nbsp;drawing&nbsp;the&nbsp;frame.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;drawing&nbsp;all&nbsp;4&nbsp;sides<br>
+coord&nbsp;&nbsp;-&nbsp;defines&nbsp;the&nbsp;label&nbsp;coords&nbsp;for&nbsp;x&nbsp;and&nbsp;y.&nbsp;&nbsp;Pixels&nbsp;start&nbsp;at&nbsp;1.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;to&nbsp;one&nbsp;of:&nbsp;pix,&nbsp;deg,&nbsp;hms,&nbsp;do&nbsp;(degrees&nbsp;offset),&nbsp;mo<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(arcminutes&nbsp;offset),&nbsp;so&nbsp;(arcseconds&nbsp;offset).<br>
+limits&nbsp;-&nbsp;if&nbsp;specified,&nbsp;a&nbsp;list/tuple&nbsp;of&nbsp;4&nbsp;numbers&nbsp;and&nbsp;coordinate&nbsp;type&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given&nbsp;as&nbsp;xmin,xmax,ymin,ymax,coord.&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;format<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returned&nbsp;by&nbsp;<a href="#-getlimits">getlimits</a>().&nbsp;&nbsp;If&nbsp;the&nbsp;coord&nbsp;is&nbsp;missing,&nbsp;it&nbsp;is&nbsp;assumed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;be&nbsp;'pix'.<br>
+number&nbsp;-&nbsp;where&nbsp;to&nbsp;place&nbsp;numbers.&nbsp;&nbsp;Options&nbsp;are&nbsp;top,bottom,left,right<br>
+xgrid&nbsp;&nbsp;-&nbsp;Controls&nbsp;drawing&nbsp;a&nbsp;grid&nbsp;for&nbsp;x&nbsp;axis.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;no&nbsp;grid.&nbsp;&nbsp;Can<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have&nbsp;options&nbsp;of&nbsp;major,minor<br>
+ygrid&nbsp;&nbsp;-&nbsp;Controls&nbsp;drawing&nbsp;a&nbsp;grid&nbsp;for&nbsp;y&nbsp;axis.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;no&nbsp;grid.&nbsp;&nbsp;Can<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have&nbsp;options&nbsp;of&nbsp;major,minor<br>
+xlog&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;set&nbsp;to&nbsp;True,&nbsp;xaxis&nbsp;is&nbsp;labeled&nbsp;logarithmically<br>
+ylog&nbsp;&nbsp;&nbsp;-&nbsp;If&nbsp;set&nbsp;to&nbsp;True,&nbsp;yaxis&nbsp;is&nbsp;labeled&nbsp;logarithmically<br>
+xtick&nbsp;&nbsp;-&nbsp;Controls&nbsp;drawing&nbsp;xtickmarks&nbsp;(inside,outside,inout)<br>
+ytick&nbsp;&nbsp;-&nbsp;Controls&nbsp;drawing&nbsp;ytickmarks</tt></dd></dl>
+ <dl><dt><a name="-colorbar"><strong>colorbar</strong></a>(orient<font color="#909090">='vertical'</font>)</dt><dd><tt>Plot&nbsp;a&nbsp;colorbar&nbsp;on&nbsp;the&nbsp;image.<br>
+&nbsp;<br>
+orient&nbsp;-&nbsp;can&nbsp;be&nbsp;either&nbsp;vertical&nbsp;or&nbsp;horizontal</tt></dd></dl>
+ <dl><dt><a name="-compass"><strong>compass</strong></a>(x, y, size<font color="#909090">=1</font>, **args)</dt><dd><tt>Plot&nbsp;a&nbsp;galactic&nbsp;compass<br>
+&nbsp;<br>
+x,y&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;coordinates&nbsp;for&nbsp;placement&nbsp;of&nbsp;base&nbsp;of&nbsp;compass<br>
+size&nbsp;&nbsp;&nbsp;-&nbsp;length&nbsp;of&nbsp;compass&nbsp;(all&nbsp;but&nbsp;pix&nbsp;supported&nbsp;for&nbsp;coordinates)<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+color&nbsp;&nbsp;-&nbsp;color&nbsp;of&nbsp;arrows&nbsp;and&nbsp;text<br>
+&nbsp;<br>
+coord&nbsp;-&nbsp;Input&nbsp;coordinates&nbsp;for&nbsp;x,y&nbsp;and&nbsp;size.&nbsp;&nbsp;Set&nbsp;to&nbsp;one&nbsp;of:&nbsp;pix,&nbsp;deg,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hms,&nbsp;do&nbsp;(degrees&nbsp;offset),&nbsp;mo&nbsp;(arcminutes&nbsp;offset),&nbsp;so&nbsp;(arcseconds&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset).&nbsp;&nbsp;Pixels&nbsp;start&nbsp;at&nbsp;1.<br>
+wcs&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;wcs&nbsp;(defined&nbsp;by&nbsp;pywcs)&nbsp;used&nbsp;to&nbsp;convert&nbsp;from&nbsp;world&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;pixels.&nbsp;&nbsp;If&nbsp;none,&nbsp;try&nbsp;to&nbsp;use&nbsp;a&nbsp;previously&nbsp;defined&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.,&nbsp;when&nbsp;halftone&nbsp;or&nbsp;contours&nbsp;were&nbsp;plotted).<br>
+width&nbsp;&nbsp;-&nbsp;Thickness&nbsp;of&nbsp;lines&nbsp;and&nbsp;text</tt></dd></dl>
+ <dl><dt><a name="-contour"><strong>contour</strong></a>(image, levels<font color="#909090">=None</font>, ext<font color="#909090">=0</font>, align<font color="#909090">='pix'</font>, wcs<font color="#909090">=None</font>, sigma<font color="#909090">=None</font>, **args)</dt><dd><tt>image&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;FITS&nbsp;image&nbsp;or&nbsp;the&nbsp;data&nbsp;as&nbsp;a&nbsp;numpy&nbsp;array<br>
+levels&nbsp;-&nbsp;either&nbsp;an&nbsp;integer&nbsp;number&nbsp;of&nbsp;levels,&nbsp;or&nbsp;a&nbsp;list&nbsp;or&nbsp;numpy&nbsp;array&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;levels<br>
+ext&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;FITS&nbsp;extension&nbsp;as&nbsp;a&nbsp;number&nbsp;or&nbsp;string&nbsp;name<br>
+align&nbsp;&nbsp;-&nbsp;How&nbsp;to&nbsp;align&nbsp;contours&nbsp;with&nbsp;halftone.&nbsp;&nbsp;Options&nbsp;are&nbsp;either&nbsp;pix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;wcs.<br>
+wcs&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;World&nbsp;Coordinate&nbsp;System&nbsp;for&nbsp;image&nbsp;(default&nbsp;is&nbsp;to&nbsp;read&nbsp;from&nbsp;input<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.<br>
+sigma&nbsp;&nbsp;-&nbsp;Smooth&nbsp;the&nbsp;input&nbsp;data&nbsp;by&nbsp;a&nbsp;gaussian&nbsp;filter&nbsp;with&nbsp;a&nbsp;standard<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deviation&nbsp;equal&nbsp;to&nbsp;this&nbsp;value,&nbsp;in&nbsp;pixels.&nbsp;&nbsp;Default&nbsp;is&nbsp;no<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smoothing.<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+color&nbsp;&nbsp;-&nbsp;Color&nbsp;of&nbsp;contour&nbsp;lines</tt></dd></dl>
+ <dl><dt><a name="-default"><strong>default</strong></a>()</dt><dd><tt>Set&nbsp;default&nbsp;parameters&nbsp;using&nbsp;rc()</tt></dd></dl>
+ <dl><dt><a name="-getlimits"><strong>getlimits</strong></a>(coord<font color="#909090">='pix'</font>)</dt><dd><tt>Return&nbsp;current&nbsp;image&nbsp;limits&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;[xmin,xmax,ymin,ymax,coord]<br>
+&nbsp;<br>
+coord&nbsp;-&nbsp;coordinates&nbsp;for&nbsp;returned&nbsp;limits.&nbsp;&nbsp;Set&nbsp;to&nbsp;one&nbsp;of:&nbsp;pix,&nbsp;deg,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do,&nbsp;mo,&nbsp;so&nbsp;(degrees/arcminutes/arcseconds&nbsp;offset).&nbsp;&nbsp;Pixels&nbsp;start<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at&nbsp;1.</tt></dd></dl>
+ <dl><dt><a name="-halftone"><strong>halftone</strong></a>(image, cmap<font color="#909090">='gray_r'</font>, ext<font color="#909090">=1</font>, plane<font color="#909090">=1</font>, vmin<font color="#909090">=None</font>, vmax<font color="#909090">=None</font>, **args)</dt><dd><tt>Plot&nbsp;a&nbsp;halftone&nbsp;image&nbsp;with&nbsp;specified&nbsp;colormap.<br>
+&nbsp;<br>
+returns:&nbsp;numpy&nbsp;array&nbsp;of&nbsp;the&nbsp;halftone&nbsp;data.<br>
+&nbsp;<br>
+keywords:<br>
+image&nbsp;=&nbsp;string&nbsp;with&nbsp;FITS&nbsp;image&nbsp;or&nbsp;the&nbsp;data&nbsp;as&nbsp;a&nbsp;numpy&nbsp;array<br>
+ext&nbsp;&nbsp;&nbsp;=&nbsp;FITS&nbsp;extension&nbsp;as&nbsp;a&nbsp;number&nbsp;or&nbsp;string&nbsp;name<br>
+plane&nbsp;=&nbsp;Plane&nbsp;to&nbsp;plot&nbsp;from&nbsp;a&nbsp;data&nbsp;cube<br>
+cmap&nbsp;&nbsp;=&nbsp;Colormap&nbsp;to&nbsp;use&nbsp;for&nbsp;plotting<br>
+vmin&nbsp;&nbsp;=&nbsp;Minimum&nbsp;halftone&nbsp;value.&nbsp;&nbsp;None&nbsp;is&nbsp;minimum&nbsp;of&nbsp;image<br>
+vmax&nbsp;&nbsp;=&nbsp;Maximum&nbsp;halftone&nbsp;value.&nbsp;&nbsp;None&nbsp;is&nbsp;maximum&nbsp;of&nbsp;image<br>
+&nbsp;<br>
+optional&nbsp;keywords:<br>
+wcs&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;wcs&nbsp;(as&nbsp;defined&nbsp;by&nbsp;pywcs)&nbsp;used&nbsp;to&nbsp;convert&nbsp;from&nbsp;world&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;pixels.&nbsp;&nbsp;If&nbsp;none,&nbsp;try&nbsp;to&nbsp;use&nbsp;a&nbsp;previously&nbsp;defined&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.,&nbsp;when&nbsp;halftone&nbsp;or&nbsp;contours&nbsp;were&nbsp;plotted).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TODO:&nbsp;better&nbsp;description&nbsp;that&nbsp;is&nbsp;applicable&nbsp;to&nbsp;<a href="#-halftone">halftone</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;needed.</tt></dd></dl>
+ <dl><dt><a name="-legend"><strong>legend</strong></a>(numpoints<font color="#909090">=1</font>, loc<font color="#909090">='best'</font>, **args)</dt><dd><tt>Place&nbsp;a&nbsp;legend&nbsp;on&nbsp;the&nbsp;figure<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+size&nbsp;-&nbsp;font&nbsp;size</tt></dd></dl>
+ <dl><dt><a name="-plot"><strong>plot</strong></a>(xcol, ycol, filename<font color="#909090">=None</font>, xerr<font color="#909090">=None</font>, yerr<font color="#909090">=None</font>, label<font color="#909090">='_nolegend_'</font>, **args)</dt><dd><tt>Plot&nbsp;data&nbsp;as&nbsp;points&nbsp;or&nbsp;lines<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+fcolor&nbsp;-&nbsp;Color&nbsp;of&nbsp;inside&nbsp;of&nbsp;symbol&nbsp;(facecolor)<br>
+ecolor&nbsp;-&nbsp;Color&nbsp;of&nbsp;border&nbsp;of&nbsp;symbol&nbsp;(edgecolor)<br>
+color&nbsp;&nbsp;-&nbsp;Color&nbsp;of&nbsp;both&nbsp;inside&nbsp;and&nbsp;border&nbsp;of&nbsp;symbol<br>
+coord&nbsp;&nbsp;-&nbsp;set&nbsp;to&nbsp;either&nbsp;'pix'&nbsp;or&nbsp;'wcs',&nbsp;which&nbsp;defines&nbsp;the&nbsp;input&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;x&nbsp;and&nbsp;y.&nbsp;&nbsp;Pixels&nbsp;are&nbsp;one-based.<br>
+style<br>
+wcs&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;wcs&nbsp;(defined&nbsp;by&nbsp;pywcs)&nbsp;used&nbsp;to&nbsp;convert&nbsp;from&nbsp;world&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;pixels.&nbsp;&nbsp;If&nbsp;none,&nbsp;try&nbsp;to&nbsp;use&nbsp;a&nbsp;previously&nbsp;defined&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.,&nbsp;when&nbsp;halftone&nbsp;or&nbsp;contours&nbsp;were&nbsp;plotted).<br>
+width</tt></dd></dl>
+ <dl><dt><a name="-polygon"><strong>polygon</strong></a>(x, y, **args)</dt><dd><tt>Plot&nbsp;polygons<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+fcolor&nbsp;-&nbsp;Color&nbsp;of&nbsp;inside&nbsp;of&nbsp;rectangle<br>
+ecolor&nbsp;-&nbsp;Color&nbsp;of&nbsp;border&nbsp;of&nbsp;rectangle<br>
+color&nbsp;&nbsp;-&nbsp;Color&nbsp;of&nbsp;both&nbsp;inside&nbsp;and&nbsp;border&nbsp;of&nbsp;rectangle<br>
+style&nbsp;&nbsp;-&nbsp;line&nbsp;style&nbsp;for&nbsp;border<br>
+hatch&nbsp;&nbsp;-&nbsp;Hatch&nbsp;style&nbsp;for&nbsp;interior<br>
+coord&nbsp;-&nbsp;Input&nbsp;coordinates&nbsp;for&nbsp;x,y.&nbsp;&nbsp;Set&nbsp;to&nbsp;one&nbsp;of:&nbsp;pix,&nbsp;deg,&nbsp;do&nbsp;(degrees<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset),&nbsp;mo&nbsp;(arcminutes&nbsp;offset),&nbsp;so&nbsp;(arcseconds&nbsp;offset).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pixels&nbsp;start&nbsp;at&nbsp;1.<br>
+wcs&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;wcs&nbsp;(defined&nbsp;by&nbsp;pywcs)&nbsp;used&nbsp;to&nbsp;convert&nbsp;from&nbsp;world&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;pixels.&nbsp;&nbsp;If&nbsp;none,&nbsp;try&nbsp;to&nbsp;use&nbsp;a&nbsp;previously&nbsp;defined&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.,&nbsp;when&nbsp;halftone&nbsp;or&nbsp;contours&nbsp;were&nbsp;plotted).<br>
+width&nbsp;&nbsp;-&nbsp;thickness&nbsp;of&nbsp;rectangle&nbsp;border</tt></dd></dl>
+ <dl><dt><a name="-rect"><strong>rect</strong></a>(xmin, xmax, ymin, ymax, **args)</dt><dd><tt>Draw&nbsp;a&nbsp;rectangle&nbsp;specified&nbsp;by&nbsp;coordinates&nbsp;xmin,xmax,ymin,ymax.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;calls&nbsp;<a href="#-polygon">polygon</a>()<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+fcolor&nbsp;-&nbsp;Color&nbsp;of&nbsp;inside&nbsp;of&nbsp;rectangle<br>
+ecolor&nbsp;-&nbsp;Color&nbsp;of&nbsp;border&nbsp;of&nbsp;rectangle<br>
+color&nbsp;&nbsp;-&nbsp;Color&nbsp;of&nbsp;both&nbsp;inside&nbsp;and&nbsp;border&nbsp;of&nbsp;rectangle<br>
+style&nbsp;&nbsp;-&nbsp;line&nbsp;style&nbsp;for&nbsp;border<br>
+hatch&nbsp;&nbsp;-&nbsp;Hatch&nbsp;style&nbsp;for&nbsp;interior<br>
+coord&nbsp;-&nbsp;Input&nbsp;coordinates&nbsp;for&nbsp;x,y.&nbsp;&nbsp;Set&nbsp;to&nbsp;one&nbsp;of:&nbsp;pix,&nbsp;deg,&nbsp;do&nbsp;(degrees<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset),&nbsp;mo&nbsp;(arcminutes&nbsp;offset),&nbsp;so&nbsp;(arcseconds&nbsp;offset).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pixels&nbsp;start&nbsp;at&nbsp;1.<br>
+wcs&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;wcs&nbsp;(defined&nbsp;by&nbsp;pywcs)&nbsp;used&nbsp;to&nbsp;convert&nbsp;from&nbsp;world&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;pixels.&nbsp;&nbsp;If&nbsp;none,&nbsp;try&nbsp;to&nbsp;use&nbsp;a&nbsp;previously&nbsp;defined&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.,&nbsp;when&nbsp;halftone&nbsp;or&nbsp;contours&nbsp;were&nbsp;plotted).<br>
+width&nbsp;&nbsp;-&nbsp;thickness&nbsp;of&nbsp;rectangle&nbsp;border</tt></dd></dl>
+ <dl><dt><a name="-regionfile"><strong>regionfile</strong></a>(filename)</dt><dd><tt>Plot&nbsp;ds9&nbsp;region&nbsp;files&nbsp;using&nbsp;pyregion<br>
+&nbsp;<br>
+filename&nbsp;-&nbsp;DS9&nbsp;region&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-savefig"><strong>savefig</strong></a>(filename, crop<font color="#909090">=True</font>, dpi<font color="#909090">=None</font>, orient<font color="#909090">='portrait'</font>, transparent<font color="#909090">=False</font>)</dt><dd><tt>Save&nbsp;figure<br>
+&nbsp;<br>
+filename&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;output&nbsp;filename<br>
+dpi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;dots&nbsp;per&nbsp;inch&nbsp;for&nbsp;non-ps/pdf&nbsp;files.&nbsp;&nbsp;If&nbsp;None,&nbsp;a&nbsp;default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;used.<br>
+crop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;boolean&nbsp;to&nbsp;create&nbsp;a&nbsp;bounding&nbsp;box&nbsp;around&nbsp;eps&nbsp;and&nbsp;pdf&nbsp;files<br>
+orient&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;orientation.&nbsp;&nbsp;Options&nbsp;are&nbsp;'landscape'&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'portrait'<br>
+transparent&nbsp;-&nbsp;boolean&nbsp;to&nbsp;use&nbsp;a&nbsp;transparent&nbsp;background.&nbsp;&nbsp;Only&nbsp;supported<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;pdf&nbsp;and&nbsp;png.</tt></dd></dl>
+ <dl><dt><a name="-stick"><strong>stick</strong></a>(x, y, length, angle, filename<font color="#909090">=None</font>, comment<font color="#909090">='#'</font>, scale<font color="#909090">=1</font>, start<font color="#909090">=90</font>, **args)</dt><dd><tt>Plot&nbsp;sticks&nbsp;(vectors&nbsp;without&nbsp;arrowheads).<br>
+&nbsp;<br>
+matplotlib&nbsp;version&nbsp;1.0.0&nbsp;will&nbsp;give&nbsp;error&nbsp;messages&nbsp;when&nbsp;running&nbsp;this<br>
+command,&nbsp;but&nbsp;the&nbsp;sticks&nbsp;will&nbsp;look&nbsp;fine.<br>
+&nbsp;<br>
+x,y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;integer,&nbsp;list,&nbsp;or&nbsp;tuple&nbsp;for&nbsp;x/y&nbsp;data&nbsp;points<br>
+length&nbsp;&nbsp;&nbsp;-&nbsp;integer,&nbsp;list,&nbsp;or&nbsp;tuple&nbsp;for&nbsp;length&nbsp;of&nbsp;sticks<br>
+angle&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;integer,&nbsp;list,&nbsp;or&nbsp;tuple&nbsp;for&nbsp;angles&nbsp;of&nbsp;sticks.&nbsp;&nbsp;Values&nbsp;are<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;degrees.&nbsp;&nbsp;Note,&nbsp;the&nbsp;start&nbsp;keyword&nbsp;defines&nbsp;where&nbsp;zero<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;degrees&nbsp;is&nbsp;located.<br>
+datafile&nbsp;-&nbsp;string&nbsp;name&nbsp;of&nbsp;input&nbsp;data&nbsp;file.&nbsp;&nbsp;Leave&nbsp;as&nbsp;None&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x,y,length,angle&nbsp;are&nbsp;a&nbsp;sequence&nbsp;of&nbsp;numbers<br>
+comment&nbsp;&nbsp;-&nbsp;comment&nbsp;character&nbsp;used&nbsp;in&nbsp;datafile<br>
+scale&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;scale&nbsp;factor&nbsp;for&nbsp;length&nbsp;of&nbsp;sticks<br>
+start&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;starting&nbsp;angle&nbsp;from&nbsp;+x&nbsp;that&nbsp;corresponds&nbsp;to&nbsp;zero&nbsp;degrees.&nbsp;&nbsp;The<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;of&nbsp;90&nbsp;means&nbsp;that&nbsp;zero&nbsp;degrees&nbsp;is&nbsp;the&nbsp;+y&nbsp;axis.&nbsp;&nbsp;This&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;normal&nbsp;convention&nbsp;in&nbsp;polarization&nbsp;maps.<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+color&nbsp;-&nbsp;Color&nbsp;of&nbsp;stick<br>
+coord&nbsp;-&nbsp;Input&nbsp;coordinates&nbsp;for&nbsp;x,y.&nbsp;&nbsp;Set&nbsp;to&nbsp;one&nbsp;of:&nbsp;pix,&nbsp;deg,&nbsp;do&nbsp;(degrees<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset),&nbsp;mo&nbsp;(arcminutes&nbsp;offset),&nbsp;so&nbsp;(arcseconds&nbsp;offset).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pixels&nbsp;start&nbsp;at&nbsp;1.<br>
+fixed&nbsp;-&nbsp;Set&nbsp;to&nbsp;True&nbsp;if&nbsp;lengths&nbsp;of&nbsp;sticks&nbsp;should&nbsp;be&nbsp;held&nbsp;fixed&nbsp;and&nbsp;equal<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;scale&nbsp;factor<br>
+wcs&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;wcs&nbsp;(defined&nbsp;by&nbsp;pywcs)&nbsp;used&nbsp;to&nbsp;convert&nbsp;from&nbsp;world&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;pixels.&nbsp;&nbsp;If&nbsp;none,&nbsp;try&nbsp;to&nbsp;use&nbsp;a&nbsp;previously&nbsp;defined&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.,&nbsp;when&nbsp;halftone&nbsp;or&nbsp;contours&nbsp;were&nbsp;plotted).<br>
+width&nbsp;-&nbsp;thickness&nbsp;of&nbsp;stick</tt></dd></dl>
+ <dl><dt><a name="-subplot"><strong>subplot</strong></a>(nrow, ncol, idx, wspace<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;subplot<br>
+TODO&nbsp;subplots_adjust(),&nbsp;or&nbsp;subplots()?</tt></dd></dl>
+ <dl><dt><a name="-subplot2"><strong>subplot2</strong></a>(idx, nrow<font color="#909090">=None</font>, ncol<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;subplot<br>
+TODO&nbsp;subplots_adjust(),&nbsp;or&nbsp;subplots()?</tt></dd></dl>
+ <dl><dt><a name="-text"><strong>text</strong></a>(x, y, text, **args)</dt><dd><tt>Place&nbsp;text<br>
+&nbsp;<br>
+x,y&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;coordinates&nbsp;for&nbsp;placement&nbsp;of&nbsp;text<br>
+text&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;containing&nbsp;text<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+angle&nbsp;&nbsp;-&nbsp;text&nbsp;angle&nbsp;(defaults&nbsp;to&nbsp;0&nbsp;deg.)<br>
+bg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;background&nbsp;color&nbsp;of&nbsp;text&nbsp;box<br>
+color&nbsp;&nbsp;-&nbsp;color&nbsp;of&nbsp;text<br>
+coord&nbsp;-&nbsp;Input&nbsp;coordinates&nbsp;for&nbsp;x,y.&nbsp;&nbsp;Set&nbsp;to&nbsp;one&nbsp;of:&nbsp;pix,&nbsp;deg,&nbsp;do&nbsp;(degrees<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset),&nbsp;mo&nbsp;(arcminutes&nbsp;offset),&nbsp;so&nbsp;(arcseconds&nbsp;offset).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pixels&nbsp;start&nbsp;at&nbsp;1.<br>
+font&nbsp;&nbsp;&nbsp;-&nbsp;font&nbsp;family<br>
+halign&nbsp;-&nbsp;horizontal&nbsp;alignment<br>
+size&nbsp;&nbsp;&nbsp;-&nbsp;font&nbsp;size<br>
+valign&nbsp;-&nbsp;vertical&nbsp;alignment<br>
+wcs&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;wcs&nbsp;(defined&nbsp;by&nbsp;pywcs)&nbsp;used&nbsp;to&nbsp;convert&nbsp;from&nbsp;world&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;pixels.&nbsp;&nbsp;If&nbsp;none,&nbsp;try&nbsp;to&nbsp;use&nbsp;a&nbsp;previously&nbsp;defined&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.,&nbsp;when&nbsp;halftone&nbsp;or&nbsp;contours&nbsp;were&nbsp;plotted).<br>
+width&nbsp;&nbsp;-&nbsp;font&nbsp;weight&nbsp;(thickness)</tt></dd></dl>
+ <dl><dt><a name="-title"><strong>title</strong></a>(text, **args)</dt><dd><tt>Put&nbsp;a&nbsp;title&nbsp;on&nbsp;the&nbsp;plot<br>
+&nbsp;<br>
+text&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;of&nbsp;text&nbsp;to&nbsp;place<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+angle&nbsp;&nbsp;-&nbsp;text&nbsp;angle.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;zero&nbsp;degrees&nbsp;(horizontal)<br>
+color&nbsp;&nbsp;-&nbsp;text&nbsp;color<br>
+font&nbsp;&nbsp;&nbsp;-&nbsp;text&nbsp;style<br>
+size&nbsp;&nbsp;&nbsp;-&nbsp;text&nbsp;size<br>
+width&nbsp;&nbsp;-&nbsp;text&nbsp;width&nbsp;(boldness)<br>
+halign&nbsp;-&nbsp;horizontal&nbsp;alignment.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;center<br>
+valign&nbsp;-&nbsp;vertical&nbsp;alignment</tt></dd></dl>
+ <dl><dt><a name="-vector"><strong>vector</strong></a>()</dt><dd><tt>Dummy&nbsp;command&nbsp;that&nbsp;in&nbsp;the&nbsp;future&nbsp;will&nbsp;plot&nbsp;vector&nbsp;fields</tt></dd></dl>
+ <dl><dt><a name="-vectorkey"><strong>vectorkey</strong></a>(x, y, length, text, **args)</dt><dd><tt>Plot&nbsp;a&nbsp;vector&nbsp;key&nbsp;(which&nbsp;could&nbsp;be&nbsp;a&nbsp;polarization&nbsp;key).<br>
+&nbsp;<br>
+TODO:&nbsp;In&nbsp;the&nbsp;future&nbsp;this&nbsp;should&nbsp;probably&nbsp;be&nbsp;renamed&nbsp;to&nbsp;vectorlegend()<br>
+&nbsp;<br>
+This&nbsp;will&nbsp;only&nbsp;plot&nbsp;a&nbsp;key&nbsp;based&nbsp;on&nbsp;the&nbsp;last&nbsp;<a href="#-stick">stick</a>()&nbsp;or&nbsp;<a href="#-vector">vector</a>()&nbsp;command.<br>
+x,y&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;floats&nbsp;specifying&nbsp;location<br>
+length&nbsp;-&nbsp;float&nbsp;giving&nbsp;length&nbsp;of&nbsp;vector&nbsp;(scale&nbsp;factor&nbsp;is&nbsp;the&nbsp;same&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specified&nbsp;for&nbsp;the&nbsp;last&nbsp;<a href="#-stick">stick</a>()&nbsp;or&nbsp;<a href="#-vector">vector</a>()&nbsp;command.<br>
+text&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;describing&nbsp;reference&nbsp;vector<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+coord&nbsp;-&nbsp;Input&nbsp;coordinates&nbsp;for&nbsp;x,y.&nbsp;&nbsp;Set&nbsp;to&nbsp;one&nbsp;of:&nbsp;pix,&nbsp;deg,&nbsp;do&nbsp;(degrees<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset),&nbsp;mo&nbsp;(arcminutes&nbsp;offset),&nbsp;so&nbsp;(arcseconds&nbsp;offset).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pixels&nbsp;start&nbsp;at&nbsp;1.<br>
+color&nbsp;&nbsp;-&nbsp;color&nbsp;of&nbsp;text&nbsp;label<br>
+size&nbsp;&nbsp;&nbsp;-&nbsp;font&nbsp;size<br>
+wcs&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;wcs&nbsp;(defined&nbsp;by&nbsp;pywcs)&nbsp;used&nbsp;to&nbsp;convert&nbsp;from&nbsp;world&nbsp;coords<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;pixels.&nbsp;&nbsp;If&nbsp;none,&nbsp;try&nbsp;to&nbsp;use&nbsp;a&nbsp;previously&nbsp;defined&nbsp;one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i.e.,&nbsp;when&nbsp;halftone&nbsp;or&nbsp;contours&nbsp;were&nbsp;plotted).</tt></dd></dl>
+ <dl><dt><a name="-xlabel"><strong>xlabel</strong></a>(text, side<font color="#909090">='bottom'</font>, offset<font color="#909090">=0</font>, **args)</dt><dd><tt>Put&nbsp;x-axis&nbsp;label<br>
+&nbsp;<br>
+text&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;of&nbsp;text&nbsp;to&nbsp;place<br>
+side&nbsp;&nbsp;&nbsp;-&nbsp;location&nbsp;of&nbsp;label.&nbsp;&nbsp;Either&nbsp;bottom&nbsp;or&nbsp;top<br>
+offset&nbsp;-&nbsp;Offset&nbsp;for&nbsp;x&nbsp;label&nbsp;added&nbsp;to&nbsp;default&nbsp;offset<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+angle&nbsp;&nbsp;-&nbsp;text&nbsp;angle.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;horizontal<br>
+color&nbsp;&nbsp;-&nbsp;text&nbsp;color<br>
+font&nbsp;&nbsp;&nbsp;-&nbsp;text&nbsp;style<br>
+size&nbsp;&nbsp;&nbsp;-&nbsp;text&nbsp;size<br>
+width&nbsp;&nbsp;-&nbsp;text&nbsp;width&nbsp;(boldness)<br>
+halign&nbsp;-&nbsp;horizontal&nbsp;alignment<br>
+malign&nbsp;-&nbsp;Not&nbsp;sure<br>
+valign&nbsp;-&nbsp;vertical&nbsp;alignment</tt></dd></dl>
+ <dl><dt><a name="-ylabel"><strong>ylabel</strong></a>(text, side<font color="#909090">='left'</font>, offset<font color="#909090">=0</font>, **args)</dt><dd><tt>Put&nbsp;y-axis&nbsp;label<br>
+&nbsp;<br>
+text&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;of&nbsp;text&nbsp;to&nbsp;place<br>
+side&nbsp;&nbsp;&nbsp;-&nbsp;location&nbsp;of&nbsp;label.&nbsp;&nbsp;Either&nbsp;left&nbsp;or&nbsp;right<br>
+offset&nbsp;-&nbsp;Offset&nbsp;for&nbsp;y&nbsp;label&nbsp;added&nbsp;to&nbsp;default&nbsp;offset<br>
+&nbsp;<br>
+Supported&nbsp;optional&nbsp;arguments:<br>
+angle&nbsp;&nbsp;-&nbsp;text&nbsp;angle.&nbsp;&nbsp;Defaults&nbsp;to&nbsp;vertical<br>
+color&nbsp;&nbsp;-&nbsp;text&nbsp;color<br>
+font&nbsp;&nbsp;&nbsp;-&nbsp;text&nbsp;style<br>
+size&nbsp;&nbsp;&nbsp;-&nbsp;text&nbsp;size<br>
+width&nbsp;&nbsp;-&nbsp;text&nbsp;width&nbsp;(boldness)<br>
+halign&nbsp;-&nbsp;horizontal&nbsp;alignment&nbsp;(defaults&nbsp;to&nbsp;center)<br>
+malign&nbsp;-&nbsp;Not&nbsp;sure<br>
+valign&nbsp;-&nbsp;vertical&nbsp;alignment</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['arc', 'arrow', 'axis', 'colorbar', 'compass', 'contour', 'default', 'getlimits', 'halftone', 'legend', 'plot', 'polygon', 'rect', 'regionfile', 'savefig', 'stick', 'subplot', 'subplot2', 'text', 'title', ...]</td></tr></table>
+</body></html>

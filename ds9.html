@@ -1,0 +1,93 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module ds9</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ds9</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/chapman/data1/Applications/nlcpython/ds9.py">/Users/chapman/data1/Applications/nlcpython/ds9.py</a></font></td></tr></table>
+    <p><tt>Library&nbsp;functions&nbsp;to&nbsp;control&nbsp;ds9&nbsp;from&nbsp;within&nbsp;python.&nbsp;&nbsp;This&nbsp;just&nbsp;uses&nbsp;the<br>
+xpa&nbsp;access&nbsp;framework&nbsp;for&nbsp;its&nbsp;magic.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="commands.html">commands</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-center"><strong>center</strong></a>(window, frame, ra, dec)</dt><dd><tt>Centers&nbsp;to&nbsp;a&nbsp;specified&nbsp;RA/DEC&nbsp;region.<br>
+&nbsp;<br>
+Will&nbsp;also&nbsp;delete&nbsp;all&nbsp;regions&nbsp;in&nbsp;that&nbsp;frame&nbsp;if&nbsp;delete=1.<br>
+window&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;ds9&nbsp;window<br>
+frame&nbsp;&nbsp;-&nbsp;integer&nbsp;which&nbsp;is&nbsp;the&nbsp;ds9&nbsp;frame&nbsp;number<br>
+ra&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Right&nbsp;Ascension<br>
+dec&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Declination</tt></dd></dl>
+ <dl><dt><a name="-getFrame"><strong>getFrame</strong></a>(window)</dt><dd><tt>Return&nbsp;index&nbsp;of&nbsp;current&nbsp;active&nbsp;frame</tt></dd></dl>
+ <dl><dt><a name="-getRegion"><strong>getRegion</strong></a>(window)</dt><dd><tt>Return&nbsp;the&nbsp;regions&nbsp;in&nbsp;the&nbsp;window&nbsp;and&nbsp;active&nbsp;frame</tt></dd></dl>
+ <dl><dt><a name="-init"><strong>init</strong></a>(window)</dt><dd><tt>Set&nbsp;the&nbsp;zoom&nbsp;level,&nbsp;tile&nbsp;option&nbsp;and&nbsp;match&nbsp;wcs&nbsp;ONCE.&nbsp;&nbsp;Hopefully,&nbsp;this&nbsp;will<br>
+minimize&nbsp;the&nbsp;memory&nbsp;leaks.</tt></dd></dl>
+ <dl><dt><a name="-load"><strong>load</strong></a>(window, frame, fitsfile, scaletype<font color="#909090">='zscale'</font>, cmap<font color="#909090">='cool'</font>, invert<font color="#909090">=True</font>)</dt><dd><tt>Load&nbsp;a&nbsp;fits&nbsp;file&nbsp;into&nbsp;a&nbsp;specific&nbsp;frame<br>
+&nbsp;<br>
+window&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;ds9&nbsp;window<br>
+frame&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;integer&nbsp;specifying&nbsp;ds9&nbsp;frame&nbsp;number<br>
+fitsfile&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;fits&nbsp;file&nbsp;to&nbsp;load</tt></dd></dl>
+ <dl><dt><a name="-loadAll"><strong>loadAll</strong></a>(window, fitslist)</dt><dd><tt>Load&nbsp;all&nbsp;fits&nbsp;files&nbsp;into&nbsp;proper&nbsp;DS9&nbsp;frames<br>
+&nbsp;<br>
+window&nbsp;&nbsp;&nbsp;-&nbsp;a&nbsp;string&nbsp;with&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;ds9&nbsp;window.<br>
+fitslist&nbsp;-&nbsp;list&nbsp;of&nbsp;names&nbsp;of&nbsp;fits&nbsp;files&nbsp;to&nbsp;load</tt></dd></dl>
+ <dl><dt><a name="-makeRegion"><strong>makeRegion</strong></a>(fp, ra, dec, color<font color="#909090">='green'</font>, size<font color="#909090">=4.0</font>, numbers<font color="#909090">=False</font>)</dt><dd><tt>Takes&nbsp;a&nbsp;c2d&nbsp;data&nbsp;table&nbsp;and&nbsp;writes&nbsp;a&nbsp;region&nbsp;file&nbsp;that<br>
+can&nbsp;be&nbsp;opened&nbsp;with&nbsp;ds9.<br>
+&nbsp;<br>
+fp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;file&nbsp;pointer<br>
+ra,dec&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;sequences&nbsp;of&nbsp;ra,dec&nbsp;values<br>
+color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;color&nbsp;of&nbsp;circles<br>
+size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;size&nbsp;of&nbsp;circles&nbsp;in&nbsp;arcseconds<br>
+numbers&nbsp;&nbsp;&nbsp;-&nbsp;display&nbsp;numbers&nbsp;with&nbsp;circles?</tt></dd></dl>
+ <dl><dt><a name="-region"><strong>region</strong></a>(window, frame, filename, delete<font color="#909090">=False</font>)</dt><dd><tt>Load&nbsp;a&nbsp;ds9&nbsp;region&nbsp;file&nbsp;in&nbsp;the&nbsp;given&nbsp;frame</tt></dd></dl>
+ <dl><dt><a name="-scale"><strong>scale</strong></a>(window, frame, scaletype)</dt><dd><tt>Change&nbsp;the&nbsp;scaling&nbsp;in&nbsp;one&nbsp;frame&nbsp;to&nbsp;the&nbsp;specified&nbsp;type<br>
+&nbsp;<br>
+window&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;ds9&nbsp;window<br>
+frame&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;ds9&nbsp;frame&nbsp;number<br>
+scaletype&nbsp;-&nbsp;string&nbsp;with&nbsp;ds9&nbsp;scale&nbsp;type</tt></dd></dl>
+ <dl><dt><a name="-scaleAll"><strong>scaleAll</strong></a>(window, scaletype)</dt><dd><tt>Change&nbsp;the&nbsp;scaling&nbsp;in&nbsp;all&nbsp;frames&nbsp;to&nbsp;the&nbsp;specified&nbsp;type<br>
+&nbsp;<br>
+window&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;ds9&nbsp;window<br>
+scaletype&nbsp;-&nbsp;string&nbsp;with&nbsp;ds9&nbsp;scale&nbsp;type</tt></dd></dl>
+ <dl><dt><a name="-setNumFrames"><strong>setNumFrames</strong></a>(num)</dt><dd><tt>Change&nbsp;the&nbsp;number&nbsp;of&nbsp;frames&nbsp;variable&nbsp;_numframes</tt></dd></dl>
+ <dl><dt><a name="-setZoomLevel"><strong>setZoomLevel</strong></a>(num)</dt><dd><tt>Set&nbsp;zoom&nbsp;level&nbsp;to&nbsp;num</tt></dd></dl>
+ <dl><dt><a name="-show"><strong>show</strong></a>(window, frame, ra, dec, delete<font color="#909090">=False</font>, color<font color="#909090">='red'</font>)</dt><dd><tt>Show&nbsp;a&nbsp;given&nbsp;ra,dec&nbsp;in&nbsp;DS9<br>
+&nbsp;<br>
+window&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;ds9&nbsp;window<br>
+frame&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;ds9&nbsp;frame&nbsp;number<br>
+ra,dec&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;world&nbsp;coordinates<br>
+delete&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;delete&nbsp;pre-existing&nbsp;regions&nbsp;in&nbsp;frame?<br>
+color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;color&nbsp;for&nbsp;ds9&nbsp;regions.&nbsp;&nbsp;Does&nbsp;not&nbsp;seem&nbsp;to&nbsp;work</tt></dd></dl>
+ <dl><dt><a name="-showAll"><strong>showAll</strong></a>(window, ra, dec, delete<font color="#909090">=False</font>, color<font color="#909090">='red'</font>)</dt><dd><tt>Show&nbsp;a&nbsp;given&nbsp;ra,dec&nbsp;in&nbsp;all&nbsp;frames&nbsp;in&nbsp;DS9</tt></dd></dl>
+ <dl><dt><a name="-view"><strong>view</strong></a>(window)</dt><dd><tt>Final&nbsp;tasks&nbsp;in&nbsp;viewing&nbsp;frames&nbsp;in&nbsp;DS9<br>
+&nbsp;<br>
+Sets&nbsp;focus&nbsp;to&nbsp;the&nbsp;first&nbsp;frame,&nbsp;and&nbsp;sets&nbsp;cursor&nbsp;to&nbsp;crosshairs&nbsp;and<br>
+locks&nbsp;them&nbsp;to&nbsp;the&nbsp;wcs<br>
+&nbsp;<br>
+window&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;ds9&nbsp;window</tt></dd></dl>
+ <dl><dt><a name="-zoom"><strong>zoom</strong></a>(window, frame, level)</dt><dd><tt>Zoom&nbsp;one&nbsp;DS9&nbsp;frame&nbsp;in&nbsp;or&nbsp;out&nbsp;X&nbsp;levels<br>
+&nbsp;<br>
+window&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;ds9&nbsp;window<br>
+level&nbsp;&nbsp;-&nbsp;zoom&nbsp;factor</tt></dd></dl>
+ <dl><dt><a name="-zoomAll"><strong>zoomAll</strong></a>(window, nlevs<font color="#909090">=1</font>)</dt><dd><tt>Zoom&nbsp;all&nbsp;DS9&nbsp;frames&nbsp;in&nbsp;or&nbsp;out&nbsp;X&nbsp;levels<br>
+&nbsp;<br>
+window&nbsp;-&nbsp;string&nbsp;with&nbsp;name&nbsp;of&nbsp;ds9&nbsp;window<br>
+nlevs&nbsp;&nbsp;-&nbsp;number&nbsp;of&nbsp;levels&nbsp;to&nbsp;zoom&nbsp;in&nbsp;(+)&nbsp;or&nbsp;out&nbsp;(-)</tt></dd></dl>
+</td></tr></table>
+</body></html>

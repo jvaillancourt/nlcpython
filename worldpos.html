@@ -1,0 +1,68 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module worldpos</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>worldpos</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/chapman/data1/Applications/nlcpython/worldpos.py">/Users/chapman/data1/Applications/nlcpython/worldpos.py</a></font></td></tr></table>
+    <p><tt>Functions&nbsp;for&nbsp;astronomy&nbsp;coversions&nbsp;between&nbsp;x,y&nbsp;pixel&nbsp;locations&nbsp;and&nbsp;<br>
+world&nbsp;coordinates&nbsp;on&nbsp;the&nbsp;sky&nbsp;with&nbsp;various&nbsp;projections.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="pyfits.html">pyfits</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="worldpos.html#wcs">wcs</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="wcs">class <strong>wcs</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="wcs-__init__"><strong>__init__</strong></a>(self, filename, ext<font color="#909090">=0</font>, rot<font color="#909090">=0</font>, cd<font color="#909090">=False</font>)</dt><dd><tt>Get&nbsp;the&nbsp;WCS&nbsp;geometry<br>
+&nbsp;<br>
+filename&nbsp;-&nbsp;name&nbsp;of&nbsp;the&nbsp;fits&nbsp;file<br>
+ext&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;extension&nbsp;number&nbsp;to&nbsp;read&nbsp;for&nbsp;header&nbsp;info&nbsp;(start&nbsp;from&nbsp;zero)<br>
+rot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name&nbsp;for&nbsp;rotation&nbsp;angle&nbsp;header&nbsp;keyword.&nbsp;&nbsp;Can&nbsp;also&nbsp;be&nbsp;an&nbsp;angle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;degrees<br>
+cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;set&nbsp;to&nbsp;true&nbsp;to&nbsp;use&nbsp;CD&nbsp;matrix&nbsp;instead&nbsp;of&nbsp;rot.</tt></dd></dl>
+
+<dl><dt><a name="wcs-sky2xy"><strong>sky2xy</strong></a>(self, ra, dec)</dt><dd><tt>Convert&nbsp;ra,dec&nbsp;into&nbsp;x,y&nbsp;pixels<br>
+&nbsp;<br>
+ra,dec&nbsp;-&nbsp;can&nbsp;be&nbsp;either&nbsp;single&nbsp;values&nbsp;or&nbsp;iterable&nbsp;list/tuples/etc</tt></dd></dl>
+
+<dl><dt><a name="wcs-xy2sky"><strong>xy2sky</strong></a>(self, x, y)</dt><dd><tt>Convert&nbsp;x,y&nbsp;into&nbsp;ra,dec<br>
+&nbsp;<br>
+x,y&nbsp;-&nbsp;can&nbsp;be&nbsp;either&nbsp;single&nbsp;values&nbsp;or&nbsp;iterable&nbsp;list/tuples/etc</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>cond2r</strong> = 0.017453292519943295<br>
+<strong>ctypes</strong> = ('-sin', '-tan', '-arc', '-ncp', '-gls', '-mer', '-ait', '-stg', '-sfl')<br>
+<strong>deps</strong> = 1e-05</td></tr></table>
+</body></html>
